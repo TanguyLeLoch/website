@@ -1,2 +1,2 @@
 # website
-My personal website tanguyleloch@gmail.com
+My personal website tanguyleloch.com
