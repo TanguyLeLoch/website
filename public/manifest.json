@@ -1,0 +1,9 @@
+{
+  "short_name": "Tanguy Le Loch",
+  "name": "Tanguy Le Loch",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#004676",
+  "background_color": "#1C1C1E"
+}
