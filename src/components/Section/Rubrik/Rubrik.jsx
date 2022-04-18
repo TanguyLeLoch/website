@@ -5,12 +5,18 @@ const Title = styled.h3`
   font-weight: bold;
   font-size: 24px;
 `;
+const Elements = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+const StyledRubrik = styled.div``;
 function Rubrik({ title, children }) {
   return (
-    <>
+    <StyledRubrik>
       <Title>{title}</Title>
-      {children}
-    </>
+      <Elements>{children}</Elements>
+    </StyledRubrik>
   );
 }
 export default Rubrik;

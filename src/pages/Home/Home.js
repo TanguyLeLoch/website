@@ -2,7 +2,8 @@ import MainPicture from '../../components/Main-picture/MainPicture';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import Section from '../../components/Section/Section';
-import Services from '../../components/Section/Services/Services';
+import Services from '../../components/Section/Rubrik/Services';
+import Pricing from '../../components/Section/Rubrik/Pricing';
 
 const StyledHome = styled.div`
   background-color: ${colors.background};
@@ -35,6 +36,7 @@ function App() {
       <Right className='right'>
         <Section sectionName='About me' headlines={headlinesAboutMe} introText={introText}>
           <Services />
+          <Pricing />
           <div>section 2 </div>
           <div>section 3</div>
         </Section>

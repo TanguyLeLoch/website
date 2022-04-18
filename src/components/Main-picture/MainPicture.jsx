@@ -19,6 +19,9 @@ const Name = styled.span`
   left: 0%;
   right: 0%;
   font-size: 3.5em;
+  @media (max-width: 1000px) {
+    font-size: 1.75em;
+  }
   font-weight: bold;
   color: ${colors.primary};
 `;
@@ -27,6 +30,9 @@ const Job = styled.span`
   position: absolute;
   font-weight: bold;
   font-size: 2em;
+  @media (max-width: 1000px) {
+    font-size: 1em;
+  }
   bottom: 5%;
   left: 0%;
   right: 0%;
