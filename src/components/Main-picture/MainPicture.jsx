@@ -11,7 +11,7 @@ const StyledImage = styled.img`
   max-width: 500px;
   height: auto;
   border-radius: 4px;
-  transform: scale(1.1, 1.1);
+  /* transform: scale(1.1, 1.1); */
 `;
 const Name = styled.span`
   position: absolute;
@@ -42,7 +42,7 @@ const Job = styled.span`
 function MainPicture() {
   return (
     <StyledMainPictureCpnt>
-      <StyledImage src={profilePicture} alt='Tanguy Le Loch' />
+      <StyledImage src={profilePicture} alt="Tanguy Le Loch" />
       <Name>Tanguy Le Loch</Name>
       <Job>Developer</Job>
     </StyledMainPictureCpnt>
