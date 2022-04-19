@@ -6,9 +6,9 @@ const Title = styled.h3`
   font-size: 24px;
 `;
 const Elements = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 230px);
+  justify-content: space-around;
 `;
 const StyledRubrik = styled.div``;
 function Rubrik({ title, children }) {

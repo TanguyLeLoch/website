@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import colors from '../../../utils/style/colors';
 import Text from '../../../utils/Text';
 const StyledItem = styled.div`
-  width: 50%;
+  width: 100%;
   padding-bottom: 10px;
 `;
 const Title = styled.h4`
-  margin-top: 10px;
-  margin-bottom: 5px;
+  margin: 8px 0;
 `;
 const StyledLogo = styled.div`
   color: ${colors.secondary};

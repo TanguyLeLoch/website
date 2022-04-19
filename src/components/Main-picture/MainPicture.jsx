@@ -11,7 +11,6 @@ const StyledImage = styled.img`
   max-width: 500px;
   height: auto;
   border-radius: 4px;
-  /* transform: scale(1.1, 1.1); */
 `;
 const Name = styled.span`
   position: absolute;
@@ -19,7 +18,7 @@ const Name = styled.span`
   left: 0%;
   right: 0%;
   font-size: 3.5em;
-  @media (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     font-size: 1.75em;
   }
   font-weight: bold;
@@ -30,7 +29,7 @@ const Job = styled.span`
   position: absolute;
   font-weight: bold;
   font-size: 2em;
-  @media (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     font-size: 1em;
   }
   bottom: 5%;

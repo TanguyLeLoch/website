@@ -7,20 +7,28 @@ import Pricing from '../../components/Section/Rubrik/Pricing';
 
 const StyledHome = styled.div`
   background-color: ${colors.background};
-  margin-top: 30px;
-  margin-left: 100px;
-  margin-right: 100px;
-  display: flex;
-  justify-content: center;
+  max-width: 1300px;
+  min-width: 300px;
+  margin: 30px auto;
+  width: 80%;
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    margin: auto;
+  }
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 500px);
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
+  justify-content: space-around;
 `;
 
-const Left = styled.div`
-  width: 50%;
-`;
-const Right = styled.div`
-  width: 50%;
-  margin-left: 50px;
-  margin-right: 50px;
+const Card = styled.div`
+  max-width: 500px;
+  @media screen and (max-width: 500px) {
+    max-width: 300px;
+  }
   color: ${colors.tertiary};
 `;
 function App() {
@@ -37,17 +45,10 @@ function App() {
     "Worked professionnaly for 2.5 years. 1 for the french lottery group FD' and 1.5 for a BSS running for several digital brand in telecom and utilities industry at triPica.";
   return (
     <StyledHome>
-      <Left className="left">
+      <Card className="pic">
         <MainPicture />
-        <Section
-          sectionName="Resume"
-          headlines={headlinesResume}
-          introText={resumeText}
-        >
-          <div>bjr</div>
-        </Section>
-      </Left>
-      <Right className="right">
+      </Card>
+      <Card className="aboutme">
         <Section
           sectionName="About me"
           headlines={headlinesAboutMe}
@@ -56,7 +57,14 @@ function App() {
           <Services />
           <Pricing />
         </Section>
-      </Right>
+      </Card>
+      <Card className="resume">
+        <Section
+          sectionName="Resume"
+          headlines={headlinesResume}
+          introText={resumeText}
+        ></Section>
+      </Card>
     </StyledHome>
   );
 }

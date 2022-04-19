@@ -17,9 +17,6 @@ const Separator = styled.hr`
 const StyledSection = styled.div`
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
   padding: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin: 20px;
 `;
 
 function Section({ sectionName, headlines, introText, children }) {

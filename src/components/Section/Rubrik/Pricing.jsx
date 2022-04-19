@@ -16,7 +16,6 @@ const PerDay = styled.span`
 `;
 
 const StyledPricing = styled.div`
-  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +26,7 @@ const StyledSpan = styled.span`
 
 function Pricing() {
   return (
-    <Rubrik title='Pricing'>
+    <Rubrik title="Pricing">
       <StyledPricing>
         <Price>
           <Amount>350</Amount>
