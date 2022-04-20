@@ -34,15 +34,11 @@ const Card = styled.div`
 function App() {
   const age = getAge('1997-05-27T00:00:00') + ' yo';
   const headlinesAboutMe = [age, 'Paris', 'Freelance'];
-  const headlinesResume = [
-    '2.5 years experience',
-    '1 year of front end',
-    "Master's degree",
-  ];
+  const headlinesResume = ['2.5 years experience', "Master's degree"];
   const introText =
-    'FullStack developer with a preference for the backend. Very attentive to every single optimization to have a more efficient sofware and a cleaner  code. I always keep in mind the customer need to find an appropriate answer to the problem.';
+    'Backend developer who knows a bit about frontend. Very attentive to every single optimization to have a more efficient sofware and a cleaner code. I always keep in mind the customer need to find an appropriate answer to the problem.';
   const resumeText =
-    "Worked professionnaly for 2.5 years. 1 for the french lottery group FD' and 1.5 for a BSS running for several digital brand in telecom and utilities industry at triPica.";
+    'Worked professionnaly for 2.5 years. 1 for the french lottery group FDJ and 1.5 for a BSS running for several digital brand in telecom and utilities industry at triPica.';
   return (
     <StyledHome>
       <Card className="pic">
