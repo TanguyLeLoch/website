@@ -20,16 +20,15 @@ const StyledSection = styled.div`
 `;
 
 function Section({ sectionName, headlines, introText, children }) {
-  const childList = [children];
   return (
-    <StyledSection>
+    <StyledSection className="Section">
       <Title>{sectionName}</Title>
       <Headlines headlines={headlines} />
       <Text>{introText}</Text>
-      {childList.map((rubrik, idx) => {
+      {children.map((rubrik, idx) => {
         return (
           <React.Fragment key={idx}>
-            <Separator />
+            <Separator className="Separator" />
             {rubrik}
           </React.Fragment>
         );

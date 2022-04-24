@@ -4,6 +4,8 @@ import colors from '../../utils/style/colors';
 import Section from '../../components/Section/Section';
 import Services from '../../components/Section/Rubrik/Services';
 import Pricing from '../../components/Section/Rubrik/Pricing';
+import Skills from '../../components/Section/Rubrik/Skills/Skills';
+import Education from '../../components/Section/Rubrik/Education';
 
 const StyledHome = styled.div`
   background-color: ${colors.background};
@@ -25,7 +27,7 @@ const StyledHome = styled.div`
 `;
 
 const Card = styled.div`
-  max-width: 500px;
+  max-width: 550px;
   @media screen and (max-width: 500px) {
     max-width: 300px;
   }
@@ -59,7 +61,10 @@ function App() {
           sectionName="Resume"
           headlines={headlinesResume}
           introText={resumeText}
-        ></Section>
+        >
+          <Skills />
+          <Education />
+        </Section>
       </Card>
     </StyledHome>
   );

@@ -26,7 +26,7 @@ const StyledSpan = styled.span`
 
 function Pricing() {
   return (
-    <Rubrik title="Pricing">
+    <Rubrik title="Pricing" format="grid">
       <StyledPricing>
         <Price>
           <Amount>350</Amount>
