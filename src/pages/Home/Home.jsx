@@ -33,7 +33,7 @@ const Card = styled.div`
   }
   color: ${colors.tertiary};
 `;
-function App() {
+function Home() {
   const age = getAge('1997-05-27T00:00:00') + ' yo';
   const headlinesAboutMe = [age, 'Paris', 'Freelance'];
   const headlinesResume = ['2.5 years experience', "Master's degree"];
@@ -70,7 +70,7 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
 
 function getAge(dateString) {
   var today = new Date();

@@ -1,16 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
+import Headline from '../../utils/Headline';
 
-const StyledHeadlines = styled.div`
-  font-weight: bold;
-  font-style: italic;
-  font-size: 20px;
-`;
-const Headline = styled.span`
-  padding: 3px;
-  color: ${colors.secondary};
-`;
+const StyledHeadlines = styled.div``;
+
 const Slash = styled.span`
   padding: 3px;
   color: ${colors.tertiary};
