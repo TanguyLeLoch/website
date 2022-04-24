@@ -6,6 +6,7 @@ import Services from '../../components/Section/Rubrik/Services';
 import Pricing from '../../components/Section/Rubrik/Pricing';
 import Skills from '../../components/Section/Rubrik/Skills/Skills';
 import Education from '../../components/Section/Rubrik/Education';
+import Project from '../../components/Project';
 
 const StyledHome = styled.div`
   background-color: ${colors.background};
@@ -27,6 +28,8 @@ const StyledHome = styled.div`
 `;
 
 const Card = styled.div`
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
+  padding: 20px;
   max-width: 550px;
   @media screen and (max-width: 500px) {
     max-width: 300px;
@@ -65,6 +68,11 @@ function Home() {
           <Skills />
           <Education />
         </Section>
+      </Card>
+      <Card className="sideProjects">
+        <Project title="Projet 1" />
+        <Project title="Projet 2" />
+        <Project title="Projet 3" />
       </Card>
     </StyledHome>
   );

@@ -14,10 +14,7 @@ const Separator = styled.hr`
   margin-top: 20px;
 `;
 
-const StyledSection = styled.div`
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
-  padding: 20px;
-`;
+const StyledSection = styled.div``;
 
 function Section({ sectionName, headlines, introText, children }) {
   return (
@@ -25,14 +22,15 @@ function Section({ sectionName, headlines, introText, children }) {
       <Title>{sectionName}</Title>
       <Headlines headlines={headlines} />
       <Text>{introText}</Text>
-      {children.map((rubrik, idx) => {
-        return (
-          <React.Fragment key={idx}>
-            <Separator className="Separator" />
-            {rubrik}
-          </React.Fragment>
-        );
-      })}
+      {children &&
+        children.map((rubrik, idx) => {
+          return (
+            <React.Fragment key={idx}>
+              <Separator className="Separator" />
+              {rubrik}
+            </React.Fragment>
+          );
+        })}
     </StyledSection>
   );
 }
