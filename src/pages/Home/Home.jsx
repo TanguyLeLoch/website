@@ -14,15 +14,16 @@ const StyledHome = styled.div`
   min-width: 300px;
   margin: 30px auto;
   width: 80%;
-  @media screen and (max-width: 700px) {
-    width: 100%;
-    margin: auto;
-  }
   height: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 500px);
-  @media screen and (max-width: 500px) {
-    grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.55fr 0.1fr 1fr;
+  grid-template-areas:
+    'picture aboutMe'
+    'resume aboutMe'
+    'resume sideProjects';
+  @media screen and (max-width: 550px) {
+    grid-template-columns: 1fr;
   }
   justify-content: space-around;
 `;
@@ -31,6 +32,7 @@ const Card = styled.div`
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
   padding: 20px;
   max-width: 550px;
+  grid-area: ${({ gridArea }) => gridArea};
   @media screen and (max-width: 500px) {
     max-width: 300px;
   }
@@ -46,10 +48,10 @@ function Home() {
     'Worked professionnaly for 2.5 years. 1 for the french lottery group FDJ and 1.5 for a BSS running for several digital brand in telecom and utilities industry at triPica. I mainly develop professionally in Java 17 and the usual java stack, like springboot, hibernate, maven and other tools like openAPI, jenkins and git.';
   return (
     <StyledHome>
-      <Card className="pic">
+      <Card gridArea="picture">
         <MainPicture />
       </Card>
-      <Card className="aboutme">
+      <Card gridArea="aboutMe">
         <Section
           sectionName="About me"
           headlines={headlinesAboutMe}
@@ -59,7 +61,7 @@ function Home() {
           <Pricing />
         </Section>
       </Card>
-      <Card className="resume">
+      <Card gridArea="resume">
         <Section
           sectionName="Resume"
           headlines={headlinesResume}
@@ -69,7 +71,7 @@ function Home() {
           <Education />
         </Section>
       </Card>
-      <Card className="sideProjects">
+      <Card gridArea="sideProjects">
         <Project title="Projet 1" />
         <Project title="Projet 2" />
         <Project title="Projet 3" />
