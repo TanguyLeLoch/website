@@ -16,7 +16,6 @@ function GridTest() {
   return (
     <Masonry columns={2} spacing={2}>
       {elements.map((height, index) => {
-        console.log(height);
         return (
           <Box key={index} sx={{ height, backgroundColor: '#0055f3' }}>
             {index + 1}

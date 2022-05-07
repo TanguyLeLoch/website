@@ -18,7 +18,7 @@ library.add(faUserGraduate, faCode, faVialCircleCheck, faBook, faBriefcase);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {'  <Home /> '}
+    <Home />
     <GridTest />
   </React.StrictMode>
 );

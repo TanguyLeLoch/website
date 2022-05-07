@@ -9,8 +9,6 @@ const StyledMainPictureCpnt = styled.div`
 const StyledImage = styled.img`
   width: 100%;
   max-width: 500px;
-  height: auto;
-  border-radius: 4px;
 `;
 const Name = styled.span`
   position: absolute;

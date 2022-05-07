@@ -1,14 +1,11 @@
 import Rubrik from '../Rubrik';
 import styled from 'styled-components';
+import LogoImg from './LogoImg';
 
 const StyledCategory = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-`;
-const LogoImg = styled.img`
-  width: 60px;
-  padding: 15px;
 `;
 
 const BundleLogo = styled.div`
