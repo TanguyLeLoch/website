@@ -13,119 +13,34 @@ const ColumnMasonry = styled.div`
   flex-direction: column;
   width: 50%;
 `;
-
 const StyledCard = styled.div`
   color: ${colors.tertiary};
   width: 100%;
+  border: 1px solid red;
 `;
-const age = getAge('1997-05-27T00:00:00') + ' yo';
-const headlinesAboutMe = [age, 'Paris', 'Freelance'];
-const headlinesResume = ['2.5 years experience', "Master's degree"];
-const introText =
-  'Backend developer who knows a bit about frontend. Very attentive to every single optimization to have a more efficient sofware and a cleaner code. I always keep in mind the customer need to find an appropriate answer to the problem.';
-const resumeText =
-  'Worked professionnaly for 2.5 years. 1 for the french lottery group FDJ and 1.5 for a BSS running for several digital brand in telecom and utilities industry at triPica. I mainly develop professionally in Java 17 and the usual java stack, like springboot, hibernate, maven and other tools like openAPI, jenkins and git.';
 
 const MansonryCard = styled.div`
   display: flex;
   background-color: ${colors.background};
 `;
 
-function Home({ nbColumns }) {
+function Home() {
+  const maxNbColumns = 2;
   const nbElem = 4;
-  const [dimension, setDimension] = useState(initStateDimension(nbElem));
-  const [columnsSts, setColumnsSts] = useState([]);
+  const minColumnWidth = 400;
 
   let cardRefs = useRef(new Array(nbElem));
-
-  const content = [];
-
-  content.push({
-    id: 'picture',
-    reactElem: (
-      <StyledCard gridArea="picture" className="order_0" ref={(element) => (cardRefs.current[0] = element)} style={{ order: 0 }}>
-        <MainPicture />
-      </StyledCard>
-    ),
-  });
-  content.push({
-    id: 'aboutMe',
-    reactElem: (
-      <StyledCard gridArea="aboutMe" className="order_1" key="1" ref={(element) => (cardRefs.current[1] = element)} style={{ order: 1 }}>
-        <Section sectionName="About me" headlines={headlinesAboutMe} introText={introText}>
-          <Services />
-          <Pricing />
-        </Section>
-      </StyledCard>
-    ),
-  });
-
-  content.push({
-    id: 'resume',
-    reactElem: (
-      <StyledCard gridArea="resume" className="order_2" key="2" ref={(element) => (cardRefs.current[2] = element)} style={{ order: 2 }}>
-        <Section sectionName="Resume" headlines={headlinesResume} introText={resumeText}>
-          <Skills />
-          <Education />
-        </Section>
-      </StyledCard>
-    ),
-  });
-  content.push({
-    id: 'sideProjects',
-    reactElem: (
-      <StyledCard gridArea="sideProjects" className="order_3" key="3" ref={(element) => (cardRefs.current[3] = element)} style={{ order: 3 }}>
-        <Project title="Projet 1" />
-        <Project title="Projet 2" />
-        <Project title="Projet 3" />
-      </StyledCard>
-    ),
-  });
+  const [columnsContent, setColumnsContent] = useState(initColumns(maxNbColumns, cardRefs));
+  let [nbLoad, setNbLoad] = useState(0);
 
   const observer = useRef(
-    new ResizeObserver((entries) => {
-      for (let i = 0; i < entries.length; i++) {
-        const element = entries[i].target;
-        const id = element.className
-          .split(' ')
-          .find((e) => e.startsWith('order_'))
-          .split('_')[1];
-        const { height, width } = entries[i].contentRect;
-        console.log(`${id} - height = ${height}px`);
-        const elem = dimension.find((elem) => elem.id === i);
-        if (height !== 0) {
-          elem.height = height;
-          elem.width = width;
-        } else {
-          console.log('TF height = 0 ?');
-        }
-        setDimension(dimension);
-      }
-      const columns = new Array(nbColumns);
-      const columnsContent = new Array(nbColumns);
-      // init with for loop to have different references
-      for (let i = 0; i < columns.length; i++) {
-        columns[i] = { elements: [], totalHeight: 0 };
-        columnsContent[i] = new Array(0);
-      }
-      for (let dim of dimension) {
-        const minHeight = Math.min(...columns.map((e) => e.totalHeight));
-        const minColumn = columns.find((e) => e.totalHeight === minHeight);
-        minColumn.elements.push(dim.id);
-        minColumn.totalHeight = minColumn.totalHeight + dim.height;
-        const columnIdx = columns.indexOf(minColumn);
-        columnsContent[columnIdx].push(content[dim.id]);
-      }
-
-      console.log(`dimension=${JSON.stringify(dimension)}`);
-      console.log(columnsContent);
-      setColumnsSts(columnsContent);
+    new ResizeObserver(() => {
+      reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumns, minColumnWidth, observer);
     })
   );
-
   useEffect(() => {
     const cardRefsCurrents = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < nbElem; i++) {
       if (cardRefs.current[i]) {
         observer.current.observe(cardRefs.current[i]);
         cardRefsCurrents.push(cardRefs.current[i]);
@@ -139,33 +54,134 @@ function Home({ nbColumns }) {
     };
   }, [observer]);
 
-  if (columnsSts.length === 0) {
-    console.log('empty');
-    columnsSts[0] = content;
-    setColumnsSts(columnsSts);
-  } else {
-    console.log('not empty');
-    console.log(columnsSts.length);
-    console.log(dimension);
-    console.log(columnsSts);
+  if (nbLoad === 0) {
+    setNbLoad(++nbLoad);
+  } else if (nbLoad === 1) {
+    columnsContent[1].contentList = columnsContent[0].contentList;
+    columnsContent[0].contentList = [];
+    setColumnsContent(columnsContent);
+    setNbLoad(++nbLoad);
   }
+
   return (
     <MansonryCard>
-      {columnsSts.map((col, colIdx) => {
-        return (
-          <ColumnMasonry key={colIdx}>
-            {col.map((elem) => {
-              console.log(`Affichage de l'elem ${elem.id} dans la colonne ${colIdx}`);
-              return elem.reactElem;
-            })}
-          </ColumnMasonry>
-        );
-      })}
+      {columnsContent &&
+        columnsContent.map((col) => {
+          return (
+            <ColumnMasonry key={col.id} className={col.id}>
+              {col.contentList.map((elem) => {
+                // console.log(`Affichage de l'elem ${elem.id} dans la colonne ${col.id}`);
+                return elem.reactElem;
+              })}
+            </ColumnMasonry>
+          );
+        })}
     </MansonryCard>
   );
 }
 
 export default Home;
+
+function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, minColumnWidth, observer) {
+  const contentSorted = columnsContent
+    .reduce((acc, col) => {
+      acc.concat(col.contentList);
+      return acc.concat(col.contentList);
+    }, [])
+    .sort((a, b) => a.order - b.order);
+
+  const nbColumn = computeNbColumn(cardRefs, columnsContent, maxNbColumn, minColumnWidth);
+  const newColumnContent = new Array(nbColumn);
+  for (let i = 0; i < nbColumn; i++) {
+    newColumnContent[i] = { id: i, contentList: [], totalHeight: 0 };
+  }
+  for (const elem of contentSorted) {
+    const minHeight = Math.min(...newColumnContent.map((e) => e.totalHeight));
+    const minColumn = newColumnContent.find((e) => e.totalHeight === minHeight);
+    minColumn.contentList.push(elem);
+    minColumn.totalHeight += cardRefs.current[elem.order].clientHeight;
+  }
+  setColumnsContent(newColumnContent);
+  // observer lose ref for resize 2 column to 1 column
+  for (let i = 0; i < contentSorted.length; i++) {
+    observer.current.observe(cardRefs.current[i]);
+  }
+}
+
+function computeNbColumn(cardRefs, columnsContent, maxNbColumn, minColumnWidth) {
+  const maxWidthColumn = Math.min(...cardRefs.current.map((r) => r.clientWidth));
+  const widthScreen = maxWidthColumn * columnsContent.length;
+  // min column = 1, max column = maxNbColumn
+  return Math.max(1, Math.min(maxNbColumn, Math.floor(widthScreen / minColumnWidth)));
+}
+
+function initColumns(nbColumns, cardRefs) {
+  const columns = new Array(nbColumns);
+  for (let i = 0; i < columns.length; i++) {
+    columns[i] = { id: i, contentList: [] };
+  }
+  columns[0].contentList = initContentList(cardRefs);
+  return columns;
+}
+
+function initContentList(cardRefs) {
+  const age = getAge('1997-05-27T00:00:00') + ' yo';
+  const headlinesAboutMe = [age, 'Paris', 'Freelance'];
+  const headlinesResume = ['2.5 years experience', "Master's degree"];
+  const introText =
+    'Backend developer who knows a bit about frontend. Very attentive to every single optimization to have a more efficient sofware and a cleaner code. I always keep in mind the customer need to find an appropriate answer to the problem.';
+  const resumeText =
+    'Worked professionnaly for 2.5 years. 1 for the french lottery group FDJ and 1.5 for a BSS running for several digital brand in telecom and utilities industry at triPica. I mainly develop professionally in Java 17 and the usual java stack, like springboot, hibernate, maven and other tools like openAPI, jenkins and git.';
+
+  const content = [];
+
+  content.push({
+    id: 'picture',
+    order: 0,
+    reactElem: (
+      <StyledCard key="picture" className="order_0" ref={(element) => (cardRefs.current[0] = element)} style={{ order: 0 }}>
+        <MainPicture />
+      </StyledCard>
+    ),
+  });
+  content.push({
+    id: 'aboutMe',
+    order: 1,
+    reactElem: (
+      <StyledCard key="aboutMe" className="order_1" ref={(element) => (cardRefs.current[1] = element)} style={{ order: 1 }}>
+        <Section sectionName="About me" headlines={headlinesAboutMe} introText={introText}>
+          <Services />
+          <Pricing />
+        </Section>
+      </StyledCard>
+    ),
+  });
+
+  content.push({
+    id: 'resume',
+    order: 2,
+    reactElem: (
+      <StyledCard key="resume" className="order_2" ref={(element) => (cardRefs.current[2] = element)} style={{ order: 2 }}>
+        <Section sectionName="Resume" headlines={headlinesResume} introText={resumeText}>
+          <Skills />
+          <Education />
+        </Section>
+      </StyledCard>
+    ),
+  });
+  content.push({
+    id: 'sideProjects',
+    order: 3,
+    reactElem: (
+      <StyledCard key="sideProjects" className="order_3" ref={(element) => (cardRefs.current[3] = element)} style={{ order: 3 }}>
+        <Project title="Projet 1" />
+        <Project title="Projet 2" />
+        <Project title="Projet 3" />
+      </StyledCard>
+    ),
+  });
+  return content;
+}
 
 function getAge(dateString) {
   var today = new Date();
@@ -176,11 +192,4 @@ function getAge(dateString) {
     age--;
   }
   return age;
-}
-function initStateDimension(n) {
-  const dim = [];
-  for (let i = 0; i < n; i++) {
-    dim[i] = { id: i, height: 0 };
-  }
-  return dim;
 }
