@@ -6,8 +6,10 @@ import Services from '../../components/Section/Rubrik/Services';
 import Pricing from '../../components/Section/Rubrik/Pricing';
 import Skills from '../../components/Section/Rubrik/Skills/Skills';
 import Education from '../../components/Section/Rubrik/Education';
-import Project from '../../components/Project';
+import FrontRunnerBot from '../../components/FrontRunnerBot';
+
 import { useState, useEffect, useRef } from 'react';
+
 const ColumnMasonry = styled.div`
   display: flex;
   flex-direction: column;
@@ -173,9 +175,12 @@ function initContentList(cardRefs) {
     order: 3,
     reactElem: (
       <StyledCard key="sideProjects" className="order_3" ref={(element) => (cardRefs.current[3] = element)} style={{ order: 3 }}>
-        <Project title="Projet 1" />
-        <Project title="Projet 2" />
-        <Project title="Projet 3" />
+        <Section
+          sectionName="Side projects"
+          introText="I use to code for many kind of stuff on my free time. Recently it has been essentially about crypto programming."
+        >
+          <FrontRunnerBot />
+        </Section>
       </StyledCard>
     ),
   });

@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import colors from '../../../utils/style/colors';
+import { SectionSubtitle } from '../../Section/SectionTitle';
 
-const Title = styled.h3`
-  color: ${colors.primary};
-  font-weight: bold;
-  font-size: 24px;
-`;
 const ElementsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 220px);
@@ -29,7 +25,7 @@ function Rubrik({ title, format, children }) {
   }
   return (
     <StyledRubrik>
-      <Title>{title}</Title>
+      <SectionSubtitle>{title}</SectionSubtitle>
       <Elements>{children}</Elements>
     </StyledRubrik>
   );
