@@ -16,7 +16,6 @@ const ColumnMasonry = styled.div`
 const StyledCard = styled.div`
   color: ${colors.tertiary};
   width: 100%;
-  border: 1px solid red;
 `;
 
 const MansonryCard = styled.div`
