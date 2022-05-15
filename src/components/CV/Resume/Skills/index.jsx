@@ -1,4 +1,4 @@
-import Rubrik from '../Rubrik';
+import Rubrik from '../../../SectionComponents/Rubrik';
 import styled from 'styled-components';
 import LogoImg from './LogoImg';
 

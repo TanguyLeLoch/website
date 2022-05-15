@@ -1,27 +1,23 @@
-import Rubrik from './Rubrik';
+import Rubrik from '../../SectionComponents/Rubrik';
 import Icon from '../../../utils/Icon';
-import Moments from './Moments';
-import React from 'react';
+import Moments from '../../SectionComponents/Moments';
 const educationTitle = (
   <>
     <Icon icon="fa-user-graduate" />
-    Education
+    <span>Education</span>
   </>
 );
 const ExperienceTitle = (
   <>
     <Icon icon="fa-briefcase" />
-    Experiences
+    <span>Experiences</span>
   </>
 );
 const triPicaDescription = (
   <>
-    Backend development for a real-time utilities/telcos BSS platform. Cutting
-    edge stack: Java 17, microservices architecture, AWS server, continuous
-    integration. <br /> One quarter of my time is devops activity for debug and
-    fix production issues. <br /> First keypoint is the quality of development
-    for having the lowest memory impact to keep a software as efficient as
-    possible. The second keypoint is having a very short time to market.
+    Backend development for a real-time utilities/telcos BSS platform. Cutting edge stack: Java 17, microservices architecture, AWS server, continuous
+    integration. <br /> One quarter of my time is devops activity for debug and fix production issues. <br /> First keypoint is the quality of development for
+    having the lowest memory impact to keep a software as efficient as possible. The second keypoint is having a very short time to market.
   </>
 );
 function Education() {
@@ -48,12 +44,7 @@ function Education() {
         />
       </Rubrik>
       <Rubrik title={ExperienceTitle} format="grid">
-        <Moments
-          date="2021 - nowadays"
-          company="triPica"
-          localisation="Paris"
-          description={triPicaDescription}
-        />
+        <Moments date="2021 - nowadays" company="triPica" localisation="Paris" description={triPicaDescription} />
         <Moments
           date="2020 - 2021"
           company="Sopra Steria / FDJ"

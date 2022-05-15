@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Text from '../../../utils/Text';
-import Icon from '../../../utils/Icon';
+import Text from '../../utils/Text';
+import Icon from '../../utils/Icon';
 const StyledItem = styled.div`
   width: 100%;
   padding-bottom: 10px;

@@ -1,6 +1,6 @@
-import profilePicture from '../../assets/profilePicture.png';
+import profilePicture from '../../../assets/profilePicture.png';
 import styled from 'styled-components';
-import colors from '../../utils/style/colors';
+import colors from '../../../utils/style/colors';
 
 const StyledMainPictureCpnt = styled.div`
   position: relative;

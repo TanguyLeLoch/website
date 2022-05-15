@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import colors from '../../../utils/style/colors';
-import { SectionSubtitle } from '../../Section/SectionTitle';
+import { SectionSubtitle } from './SectionTitle';
 
 const ElementsGrid = styled.div`
   display: grid;

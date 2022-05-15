@@ -1,28 +1,36 @@
-import MainPicture from '../../components/Main-picture/MainPicture';
+import MainPicture from '../../components/CV/MainPicture';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors';
-import Section from '../../components/Section/Section';
-import Services from '../../components/Section/Rubrik/Services';
-import Pricing from '../../components/Section/Rubrik/Pricing';
-import Skills from '../../components/Section/Rubrik/Skills/Skills';
-import Education from '../../components/Section/Rubrik/Education';
-import FrontRunnerBot from '../../components/FrontRunnerBot';
+import Section from '../../components/SectionComponents/Section';
+import Services from '../../components/CV/AboutMe/Services';
+import Pricing from '../../components/CV/AboutMe/Pricing';
+import Skills from '../../components/CV/Resume/Skills';
+import Education from '../../components/CV/Resume/Education';
+import FrontRunnerBot from '../../components/CV/SideProjects/FrontRunnerBot';
 
 import { useState, useEffect, useRef } from 'react';
 
+const MasonryLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  background-color: ${colors.background};
+`;
 const ColumnMasonry = styled.div`
   display: flex;
+  gap: 30px;
   flex-direction: column;
+  max-width: 600px;
   width: 50%;
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
 `;
 const StyledCard = styled.div`
   color: ${colors.tertiary};
   width: 100%;
-`;
-
-const MansonryCard = styled.div`
-  display: flex;
-  background-color: ${colors.background};
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
+  padding: 20px;
 `;
 
 function Home() {
@@ -30,13 +38,14 @@ function Home() {
   const nbElem = 4;
   const minColumnWidth = 400;
 
+  let parentRef = useRef(null);
   let cardRefs = useRef(new Array(nbElem));
   const [columnsContent, setColumnsContent] = useState(initColumns(maxNbColumns, cardRefs));
   let [nbLoad, setNbLoad] = useState(0);
 
   const observer = useRef(
     new ResizeObserver(() => {
-      reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumns, minColumnWidth, observer);
+      reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumns, minColumnWidth, observer, parentRef);
     })
   );
   useEffect(() => {
@@ -65,7 +74,7 @@ function Home() {
   }
 
   return (
-    <MansonryCard>
+    <MasonryLayout ref={parentRef}>
       {columnsContent &&
         columnsContent.map((col) => {
           return (
@@ -77,13 +86,13 @@ function Home() {
             </ColumnMasonry>
           );
         })}
-    </MansonryCard>
+    </MasonryLayout>
   );
 }
 
 export default Home;
 
-function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, minColumnWidth, observer) {
+function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, minColumnWidth, observer, parentRef) {
   const contentSorted = columnsContent
     .reduce((acc, col) => {
       acc.concat(col.contentList);
@@ -91,7 +100,8 @@ function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, 
     }, [])
     .sort((a, b) => a.order - b.order);
 
-  const nbColumn = computeNbColumn(cardRefs, columnsContent, maxNbColumn, minColumnWidth);
+  const nbColumn = computeNbColumn(maxNbColumn, minColumnWidth, parentRef);
+
   const newColumnContent = new Array(nbColumn);
   for (let i = 0; i < nbColumn; i++) {
     newColumnContent[i] = { id: i, contentList: [], totalHeight: 0 };
@@ -109,9 +119,8 @@ function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, 
   }
 }
 
-function computeNbColumn(cardRefs, columnsContent, maxNbColumn, minColumnWidth) {
-  const maxWidthColumn = Math.min(...cardRefs.current.map((r) => r.clientWidth));
-  const widthScreen = maxWidthColumn * columnsContent.length;
+function computeNbColumn(maxNbColumn, minColumnWidth, parentRef) {
+  const widthScreen = parentRef.current.clientWidth;
   // min column = 1, max column = maxNbColumn
   return Math.max(1, Math.min(maxNbColumn, Math.floor(widthScreen / minColumnWidth)));
 }

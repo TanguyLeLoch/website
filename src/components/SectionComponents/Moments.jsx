@@ -1,7 +1,7 @@
-import Text from '../../../utils/Text';
-import Headline from '../../../utils/Headline';
+import Text from '../../utils/Text';
+import Headline from '../../utils/Headline';
 import styled from 'styled-components';
-import colors from '../../../utils/style/colors';
+import colors from '../../utils/style/colors';
 
 const CompanyName = styled.h4`
   font-size: 24px;
