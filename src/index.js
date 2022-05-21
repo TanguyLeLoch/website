@@ -9,4 +9,9 @@ import { faUserGraduate, faCode, faVialCircleCheck, faBook, faBriefcase, faArrow
 library.add(faUserGraduate, faCode, faVialCircleCheck, faBook, faBriefcase, faArrowRight);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(
+  <>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css"></link>
+    <App />
+  </>
+);

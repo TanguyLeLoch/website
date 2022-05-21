@@ -1,16 +1,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Description from './pages/Description';
+import Home from './pages/Home';
 import Projects from './pages/Projects';
+import Navbar from './components/Navbar';
+import { WidthProvider } from './utils/context';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Description />}>
-          <Route index element={<Projects />} />
+      <WidthProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
           <Route path="projects" element={<Projects />}></Route>
-        </Route>
-      </Routes>
+        </Routes>
+      </WidthProvider>
     </BrowserRouter>
   );
 }
