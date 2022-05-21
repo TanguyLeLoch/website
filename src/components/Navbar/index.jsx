@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import { WidthContext } from '../../utils/context';
+import { DimensionContext } from '../../utils/context';
 
 const StyledNav = styled.nav`
   background-color: #10101b;
@@ -29,7 +29,7 @@ const StyledLink = styled(Link)`
 const Links = styled.div``;
 
 function NavBar() {
-  const windowWidth = useContext(WidthContext);
+  const windowDimension = useContext(DimensionContext);
 
   return (
     <StyledNav>
@@ -37,7 +37,7 @@ function NavBar() {
         <Brand to="/">
           <h1>Tanguy Le Loch</h1>
         </Brand>
-        <h1>{windowWidth.width}</h1>
+        <h1>{windowDimension.width}</h1>
         <Links>
           <StyledLink to="/">Description</StyledLink>
           <StyledLink to="projects">Projects</StyledLink>

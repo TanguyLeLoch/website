@@ -8,7 +8,8 @@ import Skills from '../../components/CV/Resume/Skills';
 import Education from '../../components/CV/Resume/Education';
 import FrontRunnerBot from '../../components/CV/SideProjects/FrontRunnerBot';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { DimensionContext } from '../../utils/context';
 
 const MasonryLayout = styled.div`
   display: flex;
@@ -37,15 +38,14 @@ function Home() {
   const maxNbColumns = 2;
   const nbElem = 4;
   const minColumnWidth = 400;
-
-  let parentRef = useRef(null);
+  const windowDimension = useContext(DimensionContext);
   let cardRefs = useRef(new Array(nbElem));
   const [columnsContent, setColumnsContent] = useState(initColumns(maxNbColumns, cardRefs));
   let [nbLoad, setNbLoad] = useState(0);
 
   const observer = useRef(
     new ResizeObserver(() => {
-      reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumns, minColumnWidth, observer, parentRef);
+      reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumns, minColumnWidth, observer, windowDimension);
     })
   );
   useEffect(() => {
@@ -74,7 +74,7 @@ function Home() {
   }
 
   return (
-    <MasonryLayout ref={parentRef}>
+    <MasonryLayout>
       {columnsContent &&
         columnsContent.map((col) => {
           return (
@@ -92,7 +92,7 @@ function Home() {
 
 export default Home;
 
-function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, minColumnWidth, observer, parentRef) {
+function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, minColumnWidth, observer, windowDimension) {
   const contentSorted = columnsContent
     .reduce((acc, col) => {
       acc.concat(col.contentList);
@@ -100,7 +100,7 @@ function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, 
     }, [])
     .sort((a, b) => a.order - b.order);
 
-  const nbColumn = computeNbColumn(maxNbColumn, minColumnWidth, parentRef);
+  const nbColumn = computeNbColumn(maxNbColumn, minColumnWidth, windowDimension.dimension.width);
 
   const newColumnContent = new Array(nbColumn);
   for (let i = 0; i < nbColumn; i++) {
@@ -119,10 +119,9 @@ function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, 
   }
 }
 
-function computeNbColumn(maxNbColumn, minColumnWidth, parentRef) {
-  const widthScreen = parentRef.current.clientWidth;
+function computeNbColumn(maxNbColumn, minColumnWidth, screenWidth) {
   // min column = 1, max column = maxNbColumn
-  return Math.max(1, Math.min(maxNbColumn, Math.floor(widthScreen / minColumnWidth)));
+  return Math.max(1, Math.min(maxNbColumn, Math.floor(screenWidth / minColumnWidth)));
 }
 
 function initColumns(nbColumns, cardRefs) {
