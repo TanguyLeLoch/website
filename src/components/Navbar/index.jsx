@@ -105,10 +105,10 @@ function NavBar() {
       </Content>
       {windowDimension.isUnderBreakpoint && (
         <NavLeftPanel $burgerExtended={burgerExtended}>
-          <StyledLinkPanel to="/">
+          <StyledLinkPanel to="/" onClick={toggleBurgerExtended}>
             <SpanLink>Description</SpanLink>
           </StyledLinkPanel>
-          <StyledLinkPanel to="projects">
+          <StyledLinkPanel to="projects" onClick={toggleBurgerExtended}>
             <SpanLink>Projects</SpanLink>
           </StyledLinkPanel>
         </NavLeftPanel>
