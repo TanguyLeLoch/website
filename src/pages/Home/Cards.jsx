@@ -189,7 +189,6 @@ export function getAge(dateString, atDate) {
   return age;
 }
 export function computeNbColumn(maxNbColumn, minColumnWidth, screenWidth) {
-  console.log(`nb col = ${Math.max(1, Math.min(maxNbColumn, Math.floor(screenWidth / minColumnWidth)))}`);
   // min column = 1, max column = maxNbColumn
   return Math.max(1, Math.min(maxNbColumn, Math.floor(screenWidth / minColumnWidth)));
 }

@@ -41,7 +41,6 @@ function NavBar() {
   const windowDimension = useContext(DimensionContext);
   const [burgerExtended, setBurgerExtended] = useState(false);
   const toggleBurgerExtended = () => {
-    console.log('toggle');
     setBurgerExtended(!burgerExtended);
   };
   return (
