@@ -7,9 +7,9 @@ import { useState } from 'react';
 import Hamburger from '../utils/Hamburger';
 
 const StyledNav = styled.nav`
-  background-color: #10101b;
-  border-bottom: 2px solid ${colors.secondary};
+  background-color: ${colors.navbar};
   width: 100%;
+  position: relative;
 `;
 const Content = styled.div`
   display: flex;
@@ -28,10 +28,57 @@ const StyledLink = styled(Link)`
   font-size: 20px;
   text-decoration: none;
   padding: 5px;
-  text-decoration: underline;
 `;
 
+const StyledLinkPanel = styled(Link)`
+  color: ${colors.primary};
+  font-weight: bold;
+  font-size: 14 px;
+  text-decoration: none;
+  padding: 15px;
+`;
+
+const NavLeftPanel = styled.div`
+  background: transparent;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: ${colors.navbar};
+  top: 100%;
+  left: 0;
+  transition: transform 0.3s ease-out;
+  ${(props) => !props.$burgerExtended && `transform: translateX(-100%);`};
+  z-index: 10;
+  border-right: 1px solid ${colors.secondary};
+  border-bottom: 1px solid ${colors.secondary};
+`;
+
+const StyledLine = styled.hr`
+  height: 2px;
+  background-color: ${colors.secondary};
+  border: 0;
+`;
 const Links = styled.div``;
+const SpanLink = styled.span`
+  position: relative;
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: ${colors.secondary};
+    transition: transform 0.3s ease-out;
+  }
+`;
 function NavBar() {
   const windowDimension = useContext(DimensionContext);
   const [burgerExtended, setBurgerExtended] = useState(false);
@@ -47,11 +94,26 @@ function NavBar() {
         </Brand>
         {!windowDimension.isUnderBreakpoint && (
           <Links>
-            <StyledLink to="/">Description</StyledLink>
-            <StyledLink to="projects">Projects</StyledLink>
+            <StyledLink to="/">
+              <SpanLink>Description</SpanLink>
+            </StyledLink>
+            <StyledLink to="projects">
+              <SpanLink>Projects</SpanLink>
+            </StyledLink>
           </Links>
         )}
       </Content>
+      {windowDimension.isUnderBreakpoint && (
+        <NavLeftPanel $burgerExtended={burgerExtended}>
+          <StyledLinkPanel to="/">
+            <SpanLink>Description</SpanLink>
+          </StyledLinkPanel>
+          <StyledLinkPanel to="projects">
+            <SpanLink>Projects</SpanLink>
+          </StyledLinkPanel>
+        </NavLeftPanel>
+      )}
+      <StyledLine />
     </StyledNav>
   );
 }
