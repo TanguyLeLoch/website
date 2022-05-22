@@ -45,9 +45,7 @@ const StyledHamburger = styled.button`
 `;
 
 function Hamburger({ isExpanded, toggleBurgerExtended }) {
-  console.log('burger');
   let open = isExpanded ? 'open' : '';
-  console.log(isExpanded);
   return (
     <StyledHamburger onClick={toggleBurgerExtended} type="button" className={open}>
       <span></span>

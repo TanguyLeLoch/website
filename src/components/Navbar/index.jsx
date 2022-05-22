@@ -16,12 +16,18 @@ const Content = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 30px;
+  ${(props) => props.$isUnderBreakpoint && `position: relative;justify-content: center;margin: 0 15px`};
 `;
 const Brand = styled(Link)`
   text-decoration: none;
   align-self: center;
   justify-self: center;
 `;
+const HamburgerContainer = styled.div`
+  position: absolute;
+  left: 0;
+`;
+
 const StyledLink = styled(Link)`
   color: ${colors.primary};
   font-weight: bold;
@@ -87,8 +93,12 @@ function NavBar() {
   };
   return (
     <StyledNav>
-      <Content>
-        {windowDimension.isUnderBreakpoint && <Hamburger toggleBurgerExtended={toggleBurgerExtended} isExpanded={burgerExtended} />}
+      <Content $isUnderBreakpoint={windowDimension.isUnderBreakpoint}>
+        {windowDimension.isUnderBreakpoint && (
+          <HamburgerContainer>
+            <Hamburger toggleBurgerExtended={toggleBurgerExtended} isExpanded={burgerExtended} />
+          </HamburgerContainer>
+        )}
         <Brand to="/">
           <h1>Tanguy Le Loch</h1>
         </Brand>
