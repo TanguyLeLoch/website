@@ -27,17 +27,18 @@ const StyledLink = styled(Link)`
   text-decoration: underline;
 `;
 const Links = styled.div``;
-
+const breakpoint = 800;
 function NavBar() {
   const windowDimension = useContext(DimensionContext);
-
+  const width = windowDimension.dimension.width;
+  console.log(width);
   return (
     <StyledNav>
       <Content>
+        {windowDimension.dimension.width <= breakpoint && <button>hamburger</button>}
         <Brand to="/">
           <h1>Tanguy Le Loch</h1>
         </Brand>
-        <h1>{windowDimension.width}</h1>
         <Links>
           <StyledLink to="/">Description</StyledLink>
           <StyledLink to="projects">Projects</StyledLink>
