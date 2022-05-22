@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { DimensionContext } from '../../utils/context';
 import { useState } from 'react';
-import Icon from '../../utils/Icon';
+import Hamburger from '../utils/Hamburger';
 
 const StyledNav = styled.nav`
   background-color: #10101b;
@@ -31,11 +31,6 @@ const StyledLink = styled(Link)`
   text-decoration: underline;
 `;
 
-const Hamburger = styled.button`
-  border: none;
-  background-color: transparent;
-  outline: none;
-`;
 const Links = styled.div``;
 function NavBar() {
   const windowDimension = useContext(DimensionContext);
@@ -46,9 +41,7 @@ function NavBar() {
   return (
     <StyledNav>
       <Content>
-        {windowDimension.isUnderBreakpoint && (
-          <Hamburger onClick={toggleBurgerExtended}>{burgerExtended ? <Icon icon="fa-xmark" /> : <Icon icon="fa-bars" />}</Hamburger>
-        )}
+        {windowDimension.isUnderBreakpoint && <Hamburger toggleBurgerExtended={toggleBurgerExtended} isExpanded={burgerExtended} />}
         <Brand to="/">
           <h1>Tanguy Le Loch</h1>
         </Brand>
