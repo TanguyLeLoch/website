@@ -3,6 +3,8 @@ import colors from '../../utils/style/colors';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { DimensionContext } from '../../utils/context';
+import { useState } from 'react';
+import Icon from '../../utils/Icon';
 
 const StyledNav = styled.nav`
   background-color: #10101b;
@@ -17,6 +19,8 @@ const Content = styled.div`
 `;
 const Brand = styled(Link)`
   text-decoration: none;
+  align-self: center;
+  justify-self: center;
 `;
 const StyledLink = styled(Link)`
   color: ${colors.primary};
@@ -26,23 +30,35 @@ const StyledLink = styled(Link)`
   padding: 5px;
   text-decoration: underline;
 `;
+
+const Hamburger = styled.button`
+  border: none;
+  background-color: transparent;
+  outline: none;
+`;
 const Links = styled.div``;
-const breakpoint = 800;
 function NavBar() {
   const windowDimension = useContext(DimensionContext);
-  const width = windowDimension.dimension.width;
-  console.log(width);
+  const [burgerExtended, setBurgerExtended] = useState(false);
+  const toggleBurgerExtended = () => {
+    console.log('toggle');
+    setBurgerExtended(!burgerExtended);
+  };
   return (
     <StyledNav>
       <Content>
-        {windowDimension.dimension.width <= breakpoint && <button>hamburger</button>}
+        {windowDimension.isUnderBreakpoint && (
+          <Hamburger onClick={toggleBurgerExtended}>{burgerExtended ? <Icon icon="fa-xmark" /> : <Icon icon="fa-bars" />}</Hamburger>
+        )}
         <Brand to="/">
           <h1>Tanguy Le Loch</h1>
         </Brand>
-        <Links>
-          <StyledLink to="/">Description</StyledLink>
-          <StyledLink to="projects">Projects</StyledLink>
-        </Links>
+        {!windowDimension.isUnderBreakpoint && (
+          <Links>
+            <StyledLink to="/">Description</StyledLink>
+            <StyledLink to="projects">Projects</StyledLink>
+          </Links>
+        )}
       </Content>
     </StyledNav>
   );

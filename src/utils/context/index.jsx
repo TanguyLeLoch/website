@@ -1,20 +1,17 @@
 import React, { useState, useEffect, createContext } from 'react';
 
 export const DimensionContext = createContext();
-
+const breakpoint = 800;
 export const DimensionProvider = ({ children }) => {
-  const [dimension, setDimension] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [isUnderBreakpoint, setIsUnderBreakpoint] = useState(window.innerWidth < breakpoint);
   const handleWindowResize = () => {
-    dimension.width = window.innerWidth;
-    dimension.height = window.innerHeight;
-
-    setDimension(dimension);
-    console.log(`resize ! screen dimension are now ${dimension.width} x ${dimension.height}`);
+    setIsUnderBreakpoint(window.innerWidth < breakpoint);
   };
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
     return () => window.removeEventListener('resize', handleWindowResize);
   });
-  return <DimensionContext.Provider value={{ dimension }}>{children}</DimensionContext.Provider>;
+
+  return <DimensionContext.Provider value={{ isUnderBreakpoint }}>{children}</DimensionContext.Provider>;
 };

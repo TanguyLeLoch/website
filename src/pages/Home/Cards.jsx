@@ -8,8 +8,7 @@ import Skills from '../../components/CV/Resume/Skills';
 import Education from '../../components/CV/Resume/Education';
 import FrontRunnerBot from '../../components/CV/SideProjects/FrontRunnerBot';
 
-import { useState, useEffect, useRef, useContext } from 'react';
-import { DimensionContext } from '../../utils/context';
+import { useState, useEffect, useRef } from 'react';
 const now = new Date();
 
 const MasonryLayout = styled.div`
@@ -19,6 +18,7 @@ const MasonryLayout = styled.div`
   background-color: ${colors.background};
 `;
 const ColumnMasonry = styled.div`
+  padding: 30px;
   display: flex;
   gap: 30px;
   flex-direction: column;
@@ -41,11 +41,10 @@ function Cards() {
   const minColumnWidth = 400;
   let cardRefs = useRef(new Array(nbElem));
   const [columnsContent, setColumnsContent] = useState(initColumns(maxNbColumns, cardRefs));
-  const windowDimension = useContext(DimensionContext);
 
   const observer = useRef(
     new ResizeObserver(() => {
-      reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumns, minColumnWidth, observer, windowDimension);
+      reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumns, minColumnWidth, observer);
     })
   );
   useEffect(() => {
@@ -83,15 +82,14 @@ function Cards() {
 
 export default Cards;
 
-export function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, minColumnWidth, observer, windowDimension) {
+export function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, minColumnWidth, observer) {
   const contentSorted = columnsContent
     .reduce((acc, col) => {
       acc.concat(col.contentList);
       return acc.concat(col.contentList);
     }, [])
     .sort((a, b) => a.order - b.order);
-
-  const nbColumn = computeNbColumn(maxNbColumn, minColumnWidth, windowDimension.dimension.width);
+  const nbColumn = computeNbColumn(maxNbColumn, minColumnWidth, window.innerWidth);
 
   const newColumnContent = new Array(nbColumn);
   for (let i = 0; i < nbColumn; i++) {
@@ -191,6 +189,7 @@ export function getAge(dateString, atDate) {
   return age;
 }
 export function computeNbColumn(maxNbColumn, minColumnWidth, screenWidth) {
+  console.log(`nb col = ${Math.max(1, Math.min(maxNbColumn, Math.floor(screenWidth / minColumnWidth)))}`);
   // min column = 1, max column = maxNbColumn
   return Math.max(1, Math.min(maxNbColumn, Math.floor(screenWidth / minColumnWidth)));
 }
