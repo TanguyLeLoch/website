@@ -28,24 +28,24 @@ const CardLink = styled(Link)`
   text-decoration: none;
   transform: scale(1);
   transition: transform 0.2s ease-out;
+  h3:after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    background: ${colors.secondary};
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-out;
+  }
 
   &:hover {
     transform: scale(1.05);
     transition: transform 0.2s ease-out;
-    /* h3:hover::after {
-      transform: scaleX(1);
-    } */
     h3:after {
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      left: 0;
-      background: ${colors.secondary};
-      width: 100%;
-      height: 1px;
       transform: scaleX(1);
-      transform-origin: left;
-      transition: transform 0.3s ease-out;
     }
   }
 `;
