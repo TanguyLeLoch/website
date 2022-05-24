@@ -7,6 +7,7 @@ import Pricing from '../../components/CV/AboutMe/Pricing';
 import Skills from '../../components/CV/Resume/Skills';
 import Education from '../../components/CV/Resume/Education';
 import FrontRunnerBot from '../../components/CV/SideProjects/FrontRunnerBot';
+import { Card } from '../../components/SectionComponents/Card';
 
 import { useState, useEffect, useRef } from 'react';
 const now = new Date();
@@ -14,7 +15,6 @@ const now = new Date();
 const MasonryLayout = styled.div`
   display: flex;
   justify-content: center;
-  gap: 30px;
   background-color: ${colors.background};
 `;
 const ColumnMasonry = styled.div`
@@ -27,12 +27,6 @@ const ColumnMasonry = styled.div`
   @media screen and (max-width: 800px) {
     width: 100%;
   }
-`;
-const StyledCard = styled.div`
-  color: ${colors.tertiary};
-  width: 100%;
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
-  padding: 20px;
 `;
 
 function Cards() {
@@ -132,21 +126,21 @@ function initContentList(cardRefs) {
     id: 'picture',
     order: 0,
     reactElem: (
-      <StyledCard key="picture" className="order_0" ref={(element) => (cardRefs.current[0] = element)} style={{ order: 0 }} data-testid="card0">
+      <Card key="picture" className="order_0" ref={(element) => (cardRefs.current[0] = element)} style={{ order: 0 }} data-testid="card0">
         <MainPicture />
-      </StyledCard>
+      </Card>
     ),
   });
   content.push({
     id: 'aboutMe',
     order: 1,
     reactElem: (
-      <StyledCard key="aboutMe" className="order_1" ref={(element) => (cardRefs.current[1] = element)} style={{ order: 1 }} data-testid="card1">
+      <Card key="aboutMe" className="order_1" ref={(element) => (cardRefs.current[1] = element)} style={{ order: 1 }} data-testid="card1">
         <Section sectionName="About me" headlines={headlinesAboutMe} introText={introText}>
           <Services />
           <Pricing />
         </Section>
-      </StyledCard>
+      </Card>
     ),
   });
 
@@ -154,26 +148,26 @@ function initContentList(cardRefs) {
     id: 'resume',
     order: 2,
     reactElem: (
-      <StyledCard key="resume" className="order_2" ref={(element) => (cardRefs.current[2] = element)} style={{ order: 2 }} data-testid="card2">
+      <Card key="resume" className="order_2" ref={(element) => (cardRefs.current[2] = element)} style={{ order: 2 }} data-testid="card2">
         <Section sectionName="Resume" headlines={headlinesResume} introText={resumeText}>
           <Skills />
           <Education />
         </Section>
-      </StyledCard>
+      </Card>
     ),
   });
   content.push({
     id: 'sideProjects',
     order: 3,
     reactElem: (
-      <StyledCard key="sideProjects" className="order_3" ref={(element) => (cardRefs.current[3] = element)} style={{ order: 3 }} data-testid="card3">
+      <Card key="sideProjects" className="order_3" ref={(element) => (cardRefs.current[3] = element)} style={{ order: 3 }} data-testid="card3">
         <Section
           sectionName="Side projects"
           introText="I use to code for many kind of stuff on my free time. Recently it has been essentially about crypto programming."
         >
           <FrontRunnerBot />
         </Section>
-      </StyledCard>
+      </Card>
     ),
   });
   return content;
