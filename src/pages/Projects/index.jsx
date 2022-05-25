@@ -56,7 +56,7 @@ function Projects() {
     <>
       <Title>Some short articles of my persornal projects</Title>
       <Layout>
-        <CardLink to="/">
+        <CardLink to="/projects/front-runner-trading-bot">
           <CardTitle>Front runner trading bot</CardTitle>
         </CardLink>
         <CardLink to="/">
