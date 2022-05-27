@@ -25,7 +25,7 @@ function FrontRunnerBot() {
         </li>
       </ul>
       <p>
-        If you want to learn more about this bot (the code, the stack I used, how it work...), I wrote a blogpost here{' '}
+        If you want to learn more about this bot (the code, the stack I used for, how it works...), I wrote a blogpost{' '}
         <Link to="projects/front-runner-trading-bot">here</Link>
       </p>
     </Container>
