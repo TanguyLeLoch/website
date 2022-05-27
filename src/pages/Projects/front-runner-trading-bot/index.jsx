@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import { Card } from '../../../components/SectionComponents/Card';
+import SlippageWarning from '../../../assets/slippage-warning.png';
+import ImageLegend from '../../../components/utils/ImageLegend';
+import FrontRunExample from '../../../assets/front-run-example-legend.png';
+import FullNodeRequirement from '../../../assets/full-node-requirements.png';
+
 const Title1 = styled.h1`
   text-align: center;
   padding: 20px;
@@ -7,8 +12,7 @@ const Title1 = styled.h1`
 const Title2 = styled.h2``;
 const Title3 = styled.h3``;
 const Text = styled.p`
-  color: #dcdcdc;
-  font-size: 20px;
+  font-size: min(20px, calc(10px + 1vw));
   text-align: justify;
   padding: 10px 0;
 `;
@@ -18,18 +22,33 @@ const Intro = styled(Text)`
 `;
 
 const StyledCard = styled(Card)`
-  max-width: calc(min(1100px, 80%));
+  max-width: min(1000px, 80%);
   margin: auto;
 `;
-
+const LinkToFullNodeRequirements = (
+  <>
+    full node requirements from binance{' '}
+    <a href="https://docs.binance.org/smart-chain/developer/fullnode.html" target="_blank" rel="noreferrer">
+      docs
+    </a>
+    ;
+  </>
+);
 function FrontRunnerTradingBot() {
   return (
     <StyledCard>
       <Title1>Front runner trading bot</Title1>
       <Intro>
-        The front runner bots are a category of trading bot who get advantage of order with a big tolerance of filling. With simple word: I know someone is
+        The front runner bots are a category of trading bot who get advantage of order with a big tolerance of filling. With simple words: I know someone is
         going to buy a large amount of X token and that will make the price go up. My goal is to buy just before this person when the price is still low, and to
         sell just after in order to make a small profit.
+        <br /> An example is better than 1000 words:
+      </Intro>
+      <ImageLegend src={FrontRunExample} alt="front run example"></ImageLegend>
+      <Intro>
+        The attacker bought 28,125.6 UST for 990.932 BUSD. Then the victim bought UST for 1000 BUSD. This slightly raised the UST price. Finaly the attacker
+        sold its 28,125.6 UST for 993.722 BUSD. To conclude, the attacker make a 2.79 BUSD profit. If we minus the 0.47 BUSD fees for both transactions, The
+        final profit is 2.32 BUSD profit in less than 1 second with almost no risk.
       </Intro>
       <Title2>What is the development stack for this bot?</Title2>
       <Text>The stack is:</Text>
@@ -57,19 +76,27 @@ function FrontRunnerTradingBot() {
         they are tired to see their ethereum transactions failed even if they paid a high gas fee so they put a high slippage in doubt. I cannot blame them for
         that even if it's clearly write on their AMM when they are changing slippage.
       </Text>
+      <ImageLegend src={SlippageWarning} alt="slippage warning on pancake swap"></ImageLegend>
       <Title3> The goal of the bot is to take profit of these orders.</Title3>
       <Title2>How to detect them ? </Title2>
       <Text>
         Fortunately, the blockchain is public and the pending transaction are public as well. First we have to be connected to a node. It's possible to run it
-        by myself but it needs a huge amount of resources and can be laborious. (put link of ressource needed) I decided to use a free solution, speed node from
-        moralis (put limk of moralis). The number of transaction is very (very) limited but it's enough to start. But it's also so limited that I needed to
-        throttle myself to not analyse all the pending transactions.
+        by myself but it needs a huge amount of resources and can be laborious. For instance here the requirements recomended to run a node:
+      </Text>
+      <ImageLegend src={FullNodeRequirement} alt="full node requirements for binance smart chain" legend={LinkToFullNodeRequirements}></ImageLegend>
+      <Text>
+        I wanted to use a free solution and this solution was{' '}
+        <a href="https://moralis.io/speedy-nodes/" target="_blank" rel="noreferrer">
+          speed node from moralis
+        </a>
+        . The number of transaction is very (very) limited but it's enough to start. But it's also so limited that I needed to throttle myself to not analyse
+        all the pending transactions.
       </Text>
       <Text>
         In the pending transaction stream all the blockchain transactions will be present, most of them are not needed. We can filter all the transaction and
         target only transaction to the AMM router. I used the Pancake swap router most of the time because the Binance smart chain have to lowest fees, a lot of
-        users and also a lot of shitcoin. But, and this is a big but, there is also a big concurence between all front runner trading bot. I precise this point
-        later.
+        users and last but not least, a lot of small cap shitcoins which is important for this kind of bot. But, and this is a big but, there is also a big
+        concurence between all front runner trading bot. I precise this point later.
       </Text>
       <Text>
         Now we need to filter the most profitable transactions, so we need to compute by ourself the price of the token, this can be done by calling the reserve
@@ -80,10 +107,10 @@ function FrontRunnerTradingBot() {
       <Text>
         After compute theses informations (or some derrivated informations about them), We need to know what's the max amount I can buy in order to be at the
         limit of making fail my target order. This limit is the most profitable point possible. To resolve this 3rd degree equation who are not as simple as it
-        looks so I decided to get a approximative result by dichotomy. I can find the result at 10^-8 approximation in less than 0.04 seconds so it's
-        sufficient.
+        looks so I decided to get a approximative result by dichotomy. I can find the result with an error of 10<sup>-8</sup> decimals in less than 0.04
+        seconds, it's more than enough.
       </Text>
-      <Text>With this result I can know compute my theorical benefice, I just have to remove the fees I will pay to know if I'm profitable or not </Text>
+      <Text>With this result I can know compute my theorical benefice, I just have to minus the fees I will pay to know if I'm profitable or not </Text>
       <Title2>What will be the fees and why fees are so important ? </Title2>
       <Text>
         First the average profit is very low so the fees can be a very significative part of it. Most of the time, the fees are bigger than the theorical
@@ -91,7 +118,7 @@ function FrontRunnerTradingBot() {
       </Text>
       <Text>
         Secondly I pay more fee than a normal transaction.I have to multiply the target fees by a coefficient in order to pass before it. The target transaction
-        will be in the pool of transaction before mine so to catch up, so I will have to pay more.{' '}
+        will be in the pool of transaction before mine so to catch up, so I will have to pay more.
       </Text>
       <Text>
         The validators are incentived to process my transaction before because I pay more fee. That's how most blockchain work to regulate the stream of
@@ -104,7 +131,7 @@ function FrontRunnerTradingBot() {
       <Text>Yes, this bot is working and can front run some transactions with the perfect amount.</Text>
       <Title2>Is this bot profitable ? </Title2>
       <Text>
-        This bot do not lose but do not win money either. There is to much concurrency between front runner trading bot, if someone pay more fees than me, He
+        This bot do not lose but do not win money either. There is too much concurrency between front runner trading bot, if someone pay more fees than me, He
         will be processed before me and my transaction will fail. I will pay the fees in any case so it lower my other profits. There is also concurency between
         arbitrage bot. Some bot can arbitrage the price between my transaction and my target transation. I think I can prevent them by analysing all the pool
         and verify my transaction cannot be arbitrageable but I dont implement it yet.

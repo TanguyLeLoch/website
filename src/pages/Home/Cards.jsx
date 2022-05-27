@@ -77,6 +77,9 @@ function Cards() {
 export default Cards;
 
 export function reorderElems(cardRefs, columnsContent, setColumnsContent, maxNbColumn, minColumnWidth, observer) {
+  if (!cardRefs.current.find((ref) => ref != null)) {
+    return;
+  }
   const contentSorted = columnsContent
     .reduce((acc, col) => {
       acc.concat(col.contentList);

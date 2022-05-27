@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { SectionSubtitle } from '../../SectionComponents/SectionTitle';
-
+import { Link } from 'react-router-dom';
 import Icon from '../../../utils/Icon';
 const Container = styled.div`
   /* height: 30px; */
@@ -21,11 +21,12 @@ function FrontRunnerBot() {
         </li>
         <li>
           <Icon icon="fa-arrow-right" />
-          make a sell order of the ammount buyed which should pass just after the target transaction
+          make a sell order of the amount buyed which should pass just after the target transaction
         </li>
       </ul>
       <p>
-        The detail of how to make this is available <a href="https://google.com">here</a>
+        If you want to learn more about this bot (the code, the stack I used, how it work...), I wrote a blogpost here{' '}
+        <Link to="projects/front-runner-trading-bot">here</Link>
       </p>
     </Container>
   );

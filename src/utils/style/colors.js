@@ -1,7 +1,7 @@
 const colors = {
   primary: '#FFFFFF',
-  secondary: '#054e70',
-  tertiary: '#6F6F6F',
+  secondary: '#24a3f2',
+  tertiary: '#dcdcdc',
   background: '#1C1C1E',
   navbar: '#10101b',
 };

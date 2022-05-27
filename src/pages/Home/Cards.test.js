@@ -1,6 +1,8 @@
 import Cards, { getAge, computeNbColumn, reorderElems } from './Cards';
 import { render, screen } from '@testing-library/react';
 import ResizeObserver from './__mock__/ResizeObserver';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 
 jest.mock('../../utils/Icon', () => () => {
   const Icon = 'default-awesome-component-mock';
@@ -9,7 +11,12 @@ jest.mock('../../utils/Icon', () => () => {
 
 describe('Cards layout', () => {
   it('Should render the good layout of cards', async () => {
-    render(<Cards />);
+    const history = createMemoryHistory();
+    render(
+      <Router location={history.location} navigator={history}>
+        <Cards />
+      </Router>
+    );
     const cards = screen.getAllByTestId(/card[0-9]+/);
     expect(cards.length).toBe(4);
   });

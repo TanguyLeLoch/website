@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Navbar from './components/Navbar';
@@ -11,11 +11,11 @@ function App() {
       <DimensionProvider>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="projects" element={<Projects />}>
-            <Route path="front-runner-trading-bot" element={<FrontRunnerTradingBot />} />
+          <Route index path="/" element={<Home />}></Route>
+          <Route path="projects" element={<Outlet />}>
+            <Route index element={<Projects />}></Route>
+            <Route path="front-runner-trading-bot" element={<FrontRunnerTradingBot />}></Route>
           </Route>
-          <Route path="front-runner-trading-bot" element={<FrontRunnerTradingBot />} />
         </Routes>
       </DimensionProvider>
     </BrowserRouter>

@@ -51,12 +51,11 @@ const CardLink = styled(Link)`
 `;
 
 function Projects() {
-  console.log('My projects');
   return (
     <>
       <Title>Some short articles of my persornal projects</Title>
       <Layout>
-        <CardLink to="/projects/front-runner-trading-bot">
+        <CardLink to="front-runner-trading-bot">
           <CardTitle>Front runner trading bot</CardTitle>
         </CardLink>
         <CardLink to="/">
