@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import Section from '../../components/SectionComponents/Section';
 import Services from '../../components/CV/AboutMe/Services';
-import Pricing from '../../components/CV/AboutMe/Pricing';
 import Skills from '../../components/CV/Resume/Skills';
 import Education from '../../components/CV/Resume/Education';
 import FrontRunnerBot from '../../components/CV/SideProjects/FrontRunnerBot';
@@ -34,7 +33,8 @@ function Cards() {
   const nbElem = 4;
   const minColumnWidth = 400;
   let cardRefs = useRef(new Array(nbElem));
-  const [columnsContent, setColumnsContent] = useState(initColumns(maxNbColumns, cardRefs));
+  const nbColumnInit = computeNbColumn(maxNbColumns, minColumnWidth, window.innerWidth);
+  const [columnsContent, setColumnsContent] = useState(initColumns(nbColumnInit, cardRefs));
 
   const observer = useRef(
     new ResizeObserver(() => {
@@ -141,7 +141,6 @@ function initContentList(cardRefs) {
       <Card key="aboutMe" className="order_1" ref={(element) => (cardRefs.current[1] = element)} style={{ order: 1 }} data-testid="card1">
         <Section sectionName="About me" headlines={headlinesAboutMe} introText={introText}>
           <Services />
-          <Pricing />
         </Section>
       </Card>
     ),

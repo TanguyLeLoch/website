@@ -53,7 +53,7 @@ const NavLeftPanel = styled.div`
   top: 100%;
   left: 0;
   transition: transform 0.3s ease-out;
-  ${(props) => !props.$burgerExtended && `transform: translateX(-100%);`};
+  ${(props) => !props.$burgerExtended && `transform: translateX(-101%);`};
   z-index: 10;
   border-right: 1px solid ${colors.secondary};
   border-bottom: 1px solid ${colors.secondary};

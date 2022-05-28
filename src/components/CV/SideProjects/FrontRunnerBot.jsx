@@ -3,7 +3,12 @@ import { SectionSubtitle } from '../../SectionComponents/SectionTitle';
 import { Link } from 'react-router-dom';
 import Icon from '../../../utils/Icon';
 const Container = styled.div`
-  /* height: 30px; */
+  li {
+    padding-left: 10px;
+    svg {
+      font-size: 14px;
+    }
+  }
 `;
 function FrontRunnerBot() {
   return (
