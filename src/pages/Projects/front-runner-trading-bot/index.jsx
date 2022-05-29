@@ -39,16 +39,16 @@ function FrontRunnerTradingBot() {
     <StyledCard>
       <Title1>Front runner trading bot</Title1>
       <Intro>
-        The front runner bots are a category of trading bot who get advantage of order with a big tolerance of filling. With simple words: I know someone is
-        going to buy a large amount of X token and that will make the price go up. My goal is to buy just before this person when the price is still low, and to
-        sell just after in order to make a small profit.
-        <br /> An example is better than 1000 words:
+        Front runner bots are a category of trading bots that take advantage of orders with a high fill tolerance. In simple words: I know that someone is going
+        to buy a large amount of X token and that this will drive the price up. My goal is to buy just before that person when the price is still low, and sell
+        just after to make a small profit. <br />
+        An example is worth 1000 words:
       </Intro>
       <ImageLegend src={FrontRunExample} alt="front run example"></ImageLegend>
       <Intro>
-        The attacker bought 28,125.6 UST for 990.932 BUSD. Then the victim bought UST for 1000 BUSD. This slightly raised the UST price. Finaly the attacker
-        sold its 28,125.6 UST for 993.722 BUSD. To conclude, the attacker make a 2.79 BUSD profit. If we minus the 0.47 BUSD fees for both transactions, The
-        final profit is 2.32 BUSD profit in less than 1 second with almost no risk.
+        The attacker bought 28,125.6 UST for 990.932 BUSD. Then the victim bought UST for 1000 BUSD. This increased the price of the UST slightly. Finally, the
+        attacker sold his 28,125.6 UST for 993.722 BUSD. In conclusion, the attacker made a profit of 2.79 BUSD. If we deduct the 0.47 BUSD fee for the two
+        transactions, the final profit is 2.32 BUSD in less than a second and almost without risk.
       </Intro>
       <Title2>What is the development stack for this bot?</Title2>
       <Text>The stack is:</Text>
@@ -71,10 +71,10 @@ function FrontRunnerTradingBot() {
         transaction will fail. Of course no need to say that if the price go down my transaction will pass in any cases.
       </Text>
       <Text>
-        A variation of 10% is huge and that will not happend on a decent size coin. But sometimes on some coin, some fees are preleved during the buy or the
-        sell. That forces peole to increase their slippage manually. Some investors forget to put the slippage back to normal after their transaction. Or maybe
-        they are tired to see their ethereum transactions failed even if they paid a high gas fee so they put a high slippage in doubt. I cannot blame them for
-        that even if it's clearly write on their AMM when they are changing slippage.
+        A variation of 10% is huge and that will not happend on a coin with a decent market capitalisation. But sometimes on some coin, some fees are preleved
+        during the buy or the sell. That forces peole to increase their slippage manually. Some investors forget to put the slippage back to normal after their
+        transaction. Or maybe they are tired to see their ethereum transactions failed even if they paid a high gas fee so they put a high slippage in doubt. I
+        cannot blame them for that even if it's clearly write on their AMM when they are changing slippage.
       </Text>
       <ImageLegend src={SlippageWarning} alt="slippage warning on pancake swap"></ImageLegend>
       <Title3> The goal of the bot is to take profit of these orders.</Title3>
@@ -102,7 +102,7 @@ function FrontRunnerTradingBot() {
         Now we need to filter the most profitable transactions, so we need to compute by ourself the price of the token, this can be done by calling the reserve
         of the pair being traded. For example if the transaction want to buy grimaceCoin in exchange of BUSD, then we can compute the pair address and compute
         the ratio of grimaceCoin over BUSD in reserve, if the ratio is 10 times more grimaceCoin than BUSD, then the price is 10 BUSD per grimace coin. And
-        secondly we need to know the the slippage of the target transaction.
+        secondly we need to know the slippage of the target transaction.
       </Text>
       <Text>
         After compute theses informations (or some derrivated informations about them), We need to know what's the max amount I can buy in order to be at the

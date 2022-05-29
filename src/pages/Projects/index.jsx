@@ -28,6 +28,9 @@ const CardLink = styled(Link)`
   text-decoration: none;
   transform: scale(1);
   transition: transform 0.2s ease-out;
+  p {
+    text-align: justify;
+  }
   h3:after {
     content: '';
     position: absolute;
@@ -57,6 +60,13 @@ function Projects() {
       <Layout>
         <CardLink to="front-runner-trading-bot">
           <CardTitle>Front runner trading bot</CardTitle>
+          <p>
+            Front runner bots are a category of trading bots that take advantage of orders with a high fill tolerance. In simple words: I know that someone is
+            going to buy a large amount of X token and that this will drive the price up. My goal is to buy just before that person when the price is still low,
+            and sell just after to make a small profit. In this article, I describe my thought process for building a bot that can trade automatically with
+            almost no risk using the front run technique. All the key points to pay attention to when building a front runner bot are explained. For those who
+            want to go further, the link to my github repository is also present.
+          </p>
         </CardLink>
         <CardLink to="/">
           <CardTitle>NFT market place</CardTitle>
