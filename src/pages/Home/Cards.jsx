@@ -24,7 +24,7 @@ const ColumnMasonry = styled.div`
   max-width: 600px;
   width: 50%;
   @media screen and (max-width: 800px) {
-    width: 100%;
+    width: 90%;
   }
 `;
 

@@ -17,7 +17,7 @@ const Name = styled.span`
   bottom: 12%;
   left: 0%;
   right: 0%;
-  font-size: calc(15px + 1em);
+  font-size: calc(10px + 0.8rem);
   font-weight: bold;
   color: ${colors.primary};
 `;
@@ -25,7 +25,7 @@ const Name = styled.span`
 const Job = styled.span`
   position: absolute;
   font-weight: bold;
-  font-size: calc(10px + 0.8em);
+  font-size: calc(5px + 0.8rem);
   bottom: 5%;
   left: 0%;
   right: 0%;

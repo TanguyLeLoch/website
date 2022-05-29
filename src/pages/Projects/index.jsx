@@ -14,9 +14,9 @@ const CardTitle = styled(SectionSubtitle)`
 `;
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 500px);
+  grid-template-columns: repeat(auto-fill, min(500px, 70%));
   max-width: 1300px;
-  gap: 60px;
+  gap: 20px;
   justify-content: center;
   margin: 0 auto;
 `;

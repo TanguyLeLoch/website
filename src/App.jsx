@@ -4,12 +4,14 @@ import Projects from './pages/Projects';
 import Navbar from './components/Navbar';
 import { DimensionProvider } from './utils/context';
 import FrontRunnerTradingBot from './pages/Projects/front-runner-trading-bot';
+import SocialNetworkLinks from './components/SocialNetworkLinks/index.jsx';
 
 function App() {
   return (
     <BrowserRouter>
       <DimensionProvider>
         <Navbar />
+        <SocialNetworkLinks />
         <Routes>
           <Route index path="/" element={<Home />}></Route>
           <Route path="projects" element={<Outlet />}>
