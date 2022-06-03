@@ -64,28 +64,29 @@ function FrontRunnerTradingBot() {
       </ul>
       <Title2>How does it work ?</Title2>
       <Text>
-        For some reasons, in crypto space, it's not possible to make limit orders on chain. The only order possible is the market order. This kind of order make
-        the price of filling is unpredictable. Therefore all AMM (automated market maker) implement a swap parameter called slippage.
+        For some reason, in the crypto world, it is not possible to place limit orders on chain. The only possible order is the market order. This type of order
+        makes the fill price unpredictable. This is why all AMMs (Automated Market Maker) implement a swap parameter called slippage.
       </Text>
       <Title2>How works slippage ?</Title2>
       <Text>
-        For instance if I want to buy some GrimaceCoin, let's say 10. The current price is 10 BUSD per coin. It will cost me arround 100 BUSD. The price can
-        move between the time I press the swap button and the time my transaction is processed so I put a slippage of 10%. That means I agree that the price can
-        go up by 10%, so if the price is still under 11 BUSD my transaction will pass. If the price at the exact time of my transaction is at 11.1 BUSD, my
-        transaction will fail. Of course no need to say that if the price go down my transaction will pass in any cases.
+        For example, if I want to buy GrimaceCoin, say 10. The current price is 10 BUSD per coin. It will cost me about 100 BUSD. The price can move between the
+        time I press the exchange button and the time my transaction is processed, so I put a 10% slippage. This means that I accept that the price can increase
+        by 10%, so if the price is still below 11 BUSD, my trade will be accepted. If the price at the exact time of my trade is 11.1 BUSD, my trade will fail.
+        Of course, there is no need to say that if the price goes down, my transaction will be accepted in any case.
       </Text>
       <Text>
-        A variation of 10% is huge and that will not happend on a coin with a decent market capitalisation. But sometimes on some coin, some fees are preleved
-        during the buy or the sell. That forces peole to increase their slippage manually. Some investors forget to put the slippage back to normal after their
-        transaction. Or maybe they are tired to see their ethereum transactions failed even if they paid a high gas fee so they put a high slippage in doubt. I
-        cannot blame them for that even if it's clearly write on their AMM when they are changing slippage.
+        A 10% variation is huge and it won't happen on a coin with a decent market cap. But sometimes on some coins, fees are charged during the buying or
+        selling process. This forces people to increase their slippage manually. Some investors forget to reset the slippage after their trade. Or maybe they
+        are tired of seeing their ethereum trades fail even though they paid high gas fees, so they put a high slippage in doubt. I can't blame them for this
+        even though it is clearly written on their AMM when they change the slippage.
       </Text>
       <ImageLegend src={SlippageWarning} alt="slippage warning on pancake swap"></ImageLegend>
       <Title3> The goal of the bot is to take profit of these orders.</Title3>
       <Title2>How to detect them ? </Title2>
       <Text>
-        Fortunately, the blockchain is public and the pending transaction are public as well. First we have to be connected to a node. It's possible to run it
-        by myself but it needs a huge amount of resources and can be laborious. For instance here the requirements recomended to run a node:
+        Fortunately, the blockchain is public and the pending transactions are also public. You need to be connected to a node first. It is possible to run it
+        on your own, but this requires a huge amount of resources and can be laborious. For example, here are the recommended requirements to run a node on the
+        binance smart chain:
       </Text>
       <ImageLegend src={FullNodeRequirement} alt="full node requirements for binance smart chain" legend={LinkToFullNodeRequirements}></ImageLegend>
       <Text>
@@ -93,52 +94,54 @@ function FrontRunnerTradingBot() {
         <a href="https://moralis.io/speedy-nodes/" target="_blank" rel="noreferrer">
           speed node from moralis
         </a>
-        . The number of transaction is very (very) limited but it's enough to start. But it's also so limited that I needed to throttle myself to not analyse
-        all the pending transactions.
+        . The number of transactions is very (very) limited but it's enough to start with. But it's also so limited that I had to do some throttlelling to not
+        analyzing all the pending transactions.
       </Text>
       <Text>
-        In the pending transaction stream all the blockchain transactions will be present, most of them are not needed. We can filter all the transaction and
-        target only transaction to the AMM router. I used the Pancake swap router most of the time because the Binance smart chain have to lowest fees, a lot of
-        users and last but not least, a lot of small cap shitcoins which is important for this kind of bot. But, and this is a big but, there is also a big
-        concurence between all front runner trading bot. I precise this point later.
+        In the pending transaction stream, all transactions on the blockchain will be present, most of them are not needed. We can filter out all transactions
+        and target only transactions to the AMM router. I used the Pancake swap router most of the time because the Binance smart chain has the lowest fees, a
+        lot of users and finally, a lot of small cap shitcoins, which is important for this type of bot. But, and this is a big "but", there is also a big
+        competition between all front runner trading bot. I will clarify this point later.
       </Text>
       <Text>
-        Now we need to filter the most profitable transactions, so we need to compute by ourself the price of the token, this can be done by calling the reserve
-        of the pair being traded. For example if the transaction want to buy grimaceCoin in exchange of BUSD, then we can compute the pair address and compute
-        the ratio of grimaceCoin over BUSD in reserve, if the ratio is 10 times more grimaceCoin than BUSD, then the price is 10 BUSD per grimace coin. And
-        secondly we need to know the slippage of the target transaction.
+        Now we need to filter out the most profitable transactions, so we need to calculate the price of the token by ourselves, this can be done by calling the
+        reserve of the traded pair. For example if the transaction wants to buy grimaceCoin in exchange for BUSD, then we can compute the address of the pair
+        and calculate the ratio grimaceCoin to BUSD in the reserve, if the ratio is 10 times more grimaceCoin than BUSD, then the price is 10 BUSD per
+        grimaceCoin. And secondly, we need to know the slippage of the target trade.
       </Text>
       <Text>
         After compute theses informations (or some derrivated informations about them), We need to know what's the max amount I can buy in order to be at the
-        limit of making fail my target order. This limit is the most profitable point possible. To resolve this 3rd degree equation who are not as simple as it
-        looks so I decided to get a approximative result by dichotomy. I can find the result with an error of 10<sup>-8</sup> decimals in less than 0.04
+        limit of making fail my target order. This limit is the most profitable point possible. To resolve this 3rd degree equation which are not as simple as
+        it looks so I decided to get a approximative result by dichotomy. I can find the result with an error of 10<sup>-8</sup> decimals in less than 0.04
         seconds, it's more than enough.
       </Text>
-      <Text>With this result I can know compute my theorical benefice, I just have to minus the fees I will pay to know if I'm profitable or not </Text>
+      <Text>
+        With this result I can calculate my theoretical profit, it remains to me to deduct the fess which I will pay to know if I am profitable or not.
+      </Text>
       <Title2>What will be the fees and why fees are so important ? </Title2>
       <Text>
-        First the average profit is very low so the fees can be a very significative part of it. Most of the time, the fees are bigger than the theorical
-        profit.
+        First of all, the average profit is very low, so the costs can be a very large part of the profit. Most of the time, the costs are higher than the
+        theoretical profit.
       </Text>
       <Text>
-        Secondly I pay more fee than a normal transaction.I have to multiply the target fees by a coefficient in order to pass before it. The target transaction
-        will be in the pool of transaction before mine so to catch up, so I will have to pay more.
+        Secondly, I pay more fees than a normal transaction. I have to multiply the target's fee by a factor to get ahead of it. The target transaction will be
+        in the transaction pool before mine, so to catch up, I will have to pay more.
       </Text>
       <Text>
-        The validators are incentived to process my transaction before because I pay more fee. That's how most blockchain work to regulate the stream of
-        transaction. If there is a lot of people wanting to run a transaction, the network will be congested, so there will be people that will pay more to be
-        processed. So fees to process a new transaction will be high and people will wait the network to be not congested to process their transaction with
-        lower fees. With this mecanism people will spread theirs transaction in times and avoid congesting the network. Some Network like Solana have fix fees.
-        For this reason, the network is often down.
+        Validators are incentivized to process my transaction first because I pay more fees. This is how most blockchains work to regulate transaction flow. If
+        there are a lot of people who want to make a transaction, the network will be congested, so there will be people who will pay more to be processed.
+        Thus, the fee for processing a new transaction will be high and people will wait until the network is not congested to process their transaction with
+        lower fees. With this mechanism, people will spread out their transactions over time and avoid congesting the network. Some networks like Solana have
+        fixed fees. For this reason, the network is often down.
       </Text>
       <Title2>Is this bot working ? </Title2>
       <Text>Yes, this bot is working and can front run some transactions with the perfect amount.</Text>
       <Title2>Is this bot profitable ? </Title2>
       <Text>
-        This bot do not lose but do not win money either. There is too much concurrency between front runner trading bot, if someone pay more fees than me, He
-        will be processed before me and my transaction will fail. I will pay the fees in any case so it lower my other profits. There is also concurency between
-        arbitrage bot. Some bot can arbitrage the price between my transaction and my target transation. I think I can prevent them by analysing all the pool
-        and verify my transaction cannot be arbitrageable but I dont implement it yet.
+        This bot doesn't lose but doesn't make money either. There is too much competition between front runner trading bot, if someone pays more fees than me,
+        they will be processed before me and my transaction will fail. I will pay the fee in any case, which will reduce my other profits. There is also
+        competition between arbitrage bots. Some bots may arbitrage the price between my trade and my target trade. I think I can prevent them by analyzing the
+        whole pool and checking that my trade can't be arbitrated. and checking that my trade can't be arbitrated but I haven't implement it yet.
       </Text>
     </StyledArticle>
   );
