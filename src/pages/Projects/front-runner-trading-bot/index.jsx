@@ -8,6 +8,7 @@ import FullNodeRequirement from '../../../assets/full-node-requirements.png';
 const Title1 = styled.h1`
   text-align: center;
   padding: 20px;
+  font-size: max(20px, calc(10px + 2vw)); ;
 `;
 const Title2 = styled.h2``;
 const Title3 = styled.h3``;
@@ -18,12 +19,12 @@ const Text = styled.p`
 `;
 const Intro = styled(Text)`
   font-style: italic;
-  font-size: 22px;
+  font-size: min(22px, calc(10px + 1vw));
 `;
 
 const StyledArticle = styled.article`
   max-width: min(1000px, 80%);
-  margin: auto;
+  margin: 20px auto;
   color: ${colors.tertiary};
   width: 100%;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);

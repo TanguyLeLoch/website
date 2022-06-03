@@ -4,7 +4,7 @@ import { SectionSubtitle } from './SectionTitle';
 const ElementsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, 200px);
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 10px;
 `;
 
