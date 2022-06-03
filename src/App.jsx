@@ -5,10 +5,12 @@ import Navbar from './components/Navbar';
 import { DimensionProvider } from './utils/context';
 import FrontRunnerTradingBot from './pages/Projects/front-runner-trading-bot';
 import SocialNetworkLinks from './components/SocialNetworkLinks/index.jsx';
+import { GlobalStyle } from './GlobalStyle';
 
 function App() {
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <DimensionProvider>
         <Navbar />
         <SocialNetworkLinks />

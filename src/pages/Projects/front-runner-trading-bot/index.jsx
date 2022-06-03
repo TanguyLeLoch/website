@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card } from '../../../components/SectionComponents/Card';
+import colors from '../../../utils/style/colors';
 import SlippageWarning from '../../../assets/slippage-warning.png';
 import ImageLegend from '../../../components/utils/ImageLegend';
 import FrontRunExample from '../../../assets/front-run-example-legend.png';
@@ -21,9 +21,13 @@ const Intro = styled(Text)`
   font-size: 22px;
 `;
 
-const StyledCard = styled(Card)`
+const StyledArticle = styled.article`
   max-width: min(1000px, 80%);
   margin: auto;
+  color: ${colors.tertiary};
+  width: 100%;
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
+  padding: 20px;
 `;
 const LinkToFullNodeRequirements = (
   <>
@@ -36,7 +40,7 @@ const LinkToFullNodeRequirements = (
 );
 function FrontRunnerTradingBot() {
   return (
-    <StyledCard>
+    <StyledArticle>
       <Title1>Front runner trading bot</Title1>
       <Intro>
         Front runner bots are a category of trading bots that take advantage of orders with a high fill tolerance. In simple words: I know that someone is going
@@ -136,7 +140,7 @@ function FrontRunnerTradingBot() {
         arbitrage bot. Some bot can arbitrage the price between my transaction and my target transation. I think I can prevent them by analysing all the pool
         and verify my transaction cannot be arbitrageable but I dont implement it yet.
       </Text>
-    </StyledCard>
+    </StyledArticle>
   );
 }
 

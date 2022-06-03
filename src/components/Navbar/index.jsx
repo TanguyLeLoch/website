@@ -92,7 +92,7 @@ function NavBar() {
     setBurgerExtended(!burgerExtended);
   };
   return (
-    <StyledNav>
+    <StyledNav data-testid="navbar">
       <Content $isUnderBreakpoint={windowDimension.isUnderBreakpoint}>
         {windowDimension.isUnderBreakpoint && (
           <HamburgerContainer>

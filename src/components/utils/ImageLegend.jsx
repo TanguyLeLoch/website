@@ -10,7 +10,7 @@ const ImgLegend = styled.div`
   img {
     max-width: 100%;
   }
-  span {
+  small {
     font-style: italic;
   }
 `;
@@ -25,7 +25,7 @@ function ImageLegend({ src, alt, legend }) {
     <ImgLegend>
       <Spinner style={{ display: loading ? 'block' : 'none' }} />
       <img style={{ display: loading ? 'none' : 'block' }} src={src} alt={alt} onLoad={imageLoaded} />
-      <span>{legend ? legend : alt}</span>
+      <small>{legend ? legend : alt}</small>
     </ImgLegend>
   );
 }

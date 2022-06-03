@@ -10,19 +10,3 @@ ol,
 ul {
   list-style: none;
 }
-
-body {
-  /* font-family: 'Open Sans', sans-serif; */
-  font-family: 'Montserrat', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #1c1c1e;
-}
-h1,
-h2,
-h3,
-h4 {
-  font-weight: bold;
-  padding: 10px 0px;
-  color: white;
-}
