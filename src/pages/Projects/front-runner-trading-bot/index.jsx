@@ -144,6 +144,17 @@ function FrontRunnerTradingBot() {
         competition between arbitrage bots. Some bots may arbitrage the price between my trade and my target trade. I think I can prevent them by analyzing the
         whole pool and checking that my trade can't be arbitrated. and checking that my trade can't be arbitrated but I haven't implement it yet.
       </Text>
+      <Title2>Conclusion</Title2>
+      <Text>
+        The repository is open source and you can contribute to it. You can fork it and make your own version. Here is{' '}
+        <a href="https://github.com/TanguyLeLoch/blockchain-listener" target="_blank" rel="noreferrer">
+          the link to the repository
+        </a>
+        . I learned a lot from this bot with a deep understanding of the blockchain and specifically the pending transaction stream and the AMM router contract.
+        I hope you had enjoy this article and I hope you will enjoy the bot as well.
+      </Text>
+
+      <small>Tanguy Le Loch, June the 4th 2022</small>
     </StyledArticle>
   );
 }
