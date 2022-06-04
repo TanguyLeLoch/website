@@ -29,6 +29,10 @@ const StyledArticle = styled.article`
   width: 100%;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
   padding: 20px;
+  > small {
+    display: block;
+    text-align: right;
+  }
 `;
 const LinkToFullNodeRequirements = (
   <>
