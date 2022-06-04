@@ -151,7 +151,7 @@ function FrontRunnerTradingBot() {
           the link to the repository
         </a>
         . I learned a lot from this bot with a deep understanding of the blockchain and specifically the pending transaction stream and the AMM router contract.
-        I hope you had enjoy this article and I hope you will enjoy the bot as well.
+        I hope you enjoyed this article and I hope you will enjoy the bot as well.
       </Text>
 
       <small>Tanguy Le Loch, June the 4th 2022</small>
