@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import colors from '../../../utils/style/colors';
-import SlippageWarning from '../../../assets/slippage-warning.png';
-import ImageLegend from '../../../components/utils/ImageLegend';
-import FrontRunExample from '../../../assets/front-run-example-legend.png';
-import FullNodeRequirement from '../../../assets/full-node-requirements.png';
+import SlippageWarning from '../../../assets/front-runner-trading-bot/slippage-warning.png';
+import ImageLegend from '../../../components/utils/ImageLegend.jsx';
+import FrontRunExample from '../../../assets/front-runner-trading-bot/front-run-example-legend.png';
+import FullNodeRequirement from '../../../assets/front-runner-trading-bot/full-node-requirements.png';
 
 const Title1 = styled.h1`
   text-align: center;

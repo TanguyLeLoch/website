@@ -25,7 +25,7 @@ function ImageLegend({ src, alt, legend }) {
     <ImgLegend>
       <Spinner style={{ display: loading ? 'block' : 'none' }} />
       <img style={{ display: loading ? 'none' : 'block' }} src={src} alt={alt} onLoad={imageLoaded} />
-      <small>{legend ? legend : alt}</small>
+      {legend !== '' && <small>{legend ? legend : alt}</small>}
     </ImgLegend>
   );
 }
