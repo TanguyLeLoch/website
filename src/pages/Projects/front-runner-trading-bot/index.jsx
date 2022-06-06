@@ -69,7 +69,7 @@ function FrontRunnerTradingBot() {
       </ul>
       <Title2>How does it work ?</Title2>
       <Text>
-        For some reason, in the crypto world, it is not possible to place limit orders on chain. The only possible order is the market order. This type of order
+        For some reason, in the DeFi world, it is not possible to place limit orders on chain. The only possible order is the market order. This type of order
         makes the fill price unpredictable. This is why all AMMs (Automated Market Maker) implement a swap parameter called slippage.
       </Text>
       <Title2>How works slippage ?</Title2>
