@@ -66,3 +66,4 @@ function SocialNetworkLinks() {
 }
 
 export default SocialNetworkLinks;
+export { LogoGithub, LogoLinkedin };

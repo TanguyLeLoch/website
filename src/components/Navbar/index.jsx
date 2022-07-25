@@ -1,9 +1,8 @@
-import styled from 'styled-components';
-import colors from '../../utils/style/colors';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import styled from 'styled-components';
 import { DimensionContext } from '../../utils/context';
-import { useState } from 'react';
+import colors from '../../utils/style/colors';
 import Hamburger from '../utils/Hamburger';
 
 const StyledNav = styled.nav`
@@ -128,3 +127,4 @@ function NavBar() {
   );
 }
 export default NavBar;
+export { StyledLine };
