@@ -1,8 +1,10 @@
-import profilePicture from '../../../assets/profilePicture.png';
-import styled from 'styled-components';
-import colors from '../../../utils/style/colors';
 import { useState } from 'react';
+import styled from 'styled-components';
+import { IMG_PREFIX_PATH } from '../../../utils/Globals';
+import colors from '../../../utils/style/colors';
 import Spinner from '../../utils/Spinner';
+
+const profilePicturePath = IMG_PREFIX_PATH + 'profilePicture.png';
 
 const StyledMainPictureCpnt = styled.div`
   position: relative;
@@ -48,7 +50,7 @@ function MainPicture() {
       <SpinnerContainer style={{ display: loading ? 'flex' : 'none' }}>
         <Spinner />
       </SpinnerContainer>
-      <StyledImage style={{ display: loading ? 'none' : 'block' }} src={profilePicture} alt="Tanguy Le Loch" onLoad={imageLoaded} />
+      <StyledImage style={{ display: loading ? 'none' : 'block' }} src={profilePicturePath} alt="Tanguy Le Loch" onLoad={imageLoaded} />
       <Name>Tanguy Le Loch</Name>
       <Job>Developer</Job>
     </StyledMainPictureCpnt>

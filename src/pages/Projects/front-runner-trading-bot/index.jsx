@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import colors from '../../../utils/style/colors';
-import SlippageWarning from '../../../assets/front-runner-trading-bot/slippage-warning.png';
 import ImageLegend from '../../../components/utils/ImageLegend.jsx';
-import FrontRunExample from '../../../assets/front-runner-trading-bot/front-run-example-legend.png';
-import FullNodeRequirement from '../../../assets/front-runner-trading-bot/full-node-requirements.png';
+import { IMG_PREFIX_PATH } from '../../../utils/Globals.js';
+import colors from '../../../utils/style/colors';
+
+const FrontRunExamplePath = IMG_PREFIX_PATH + 'front-run-example-legend.png';
+const FullNodeRequirementPath = IMG_PREFIX_PATH + 'full-node-requirements.png';
+const SlippageWarningPath = IMG_PREFIX_PATH + 'slippage-warning.png';
 
 const Title1 = styled.h1`
   text-align: center;
@@ -53,7 +55,7 @@ function FrontRunnerTradingBot() {
         just after to make a small profit. <br />
         An example is worth 1000 words:
       </Intro>
-      <ImageLegend src={FrontRunExample} alt="front run example"></ImageLegend>
+      <ImageLegend src={FrontRunExamplePath} alt="front run example"></ImageLegend>
       <Intro>
         The attacker bought 28,125.6 UST for 990.932 BUSD. Then the victim bought UST for 1000 BUSD. This increased the price of the UST slightly. Finally, the
         attacker sold his 28,125.6 UST for 993.722 BUSD. In conclusion, the attacker made a profit of 2.79 BUSD. If we deduct the 0.47 BUSD fee for the two
@@ -85,7 +87,7 @@ function FrontRunnerTradingBot() {
         are tired of seeing their ethereum trades fail even though they paid high gas fees, so they put a high slippage in doubt. I can't blame them for this
         even though it is clearly written on their AMM when they change the slippage.
       </Text>
-      <ImageLegend src={SlippageWarning} alt="slippage warning on pancake swap"></ImageLegend>
+      <ImageLegend src={SlippageWarningPath} alt="slippage warning on pancake swap"></ImageLegend>
       <Title3> The goal of the bot is to take profit of these orders.</Title3>
       <Title2>How to detect them ? </Title2>
       <Text>
@@ -93,7 +95,7 @@ function FrontRunnerTradingBot() {
         on your own, but this requires a huge amount of resources and can be laborious. For example, here are the recommended requirements to run a node on the
         binance smart chain:
       </Text>
-      <ImageLegend src={FullNodeRequirement} alt="full node requirements for binance smart chain" legend={LinkToFullNodeRequirements}></ImageLegend>
+      <ImageLegend src={FullNodeRequirementPath} alt="full node requirements for binance smart chain" legend={LinkToFullNodeRequirements}></ImageLegend>
       <Text>
         I wanted to use a free solution and this solution was{' '}
         <a href="https://moralis.io/speedy-nodes/" target="_blank" rel="noreferrer">

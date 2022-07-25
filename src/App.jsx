@@ -21,6 +21,7 @@ function App() {
             <Route index element={<Projects />}></Route>
             <Route path="front-runner-trading-bot" element={<FrontRunnerTradingBot />}></Route>
           </Route>
+          <Route path="*" element={<Home />}></Route>
         </Routes>
         <Footer />
       </DimensionProvider>

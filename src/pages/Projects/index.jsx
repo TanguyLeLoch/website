@@ -1,12 +1,13 @@
-import React from 'react';
-import { SectionSubtitle } from '../../components/SectionComponents/SectionTitle';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import colors from '../../utils/style/colors';
+import styled from 'styled-components';
+import { SectionSubtitle } from '../../components/SectionComponents/SectionTitle';
 import ImageLegend from '../../components/utils/ImageLegend';
-import { useContext } from 'react';
-import BotImage from '../../assets/front-runner-trading-bot/bot.jpeg';
 import { DimensionContext } from '../../utils/context';
+import { IMG_PREFIX_PATH } from '../../utils/Globals';
+import colors from '../../utils/style/colors';
+
+const botThubnailImgPath = IMG_PREFIX_PATH + 'bot.jpeg';
 
 const Title = styled(SectionSubtitle)`
   text-align: center;
@@ -77,7 +78,7 @@ function Projects() {
       <Layout>
         <CardLink to="front-runner-trading-bot" $isUnderBreakpoint={windowDimension.isUnderBreakpoint}>
           <ImageContainer>
-            <ImageLegend src={BotImage} alt="Trading bot" legend="" />
+            <ImageLegend src={botThubnailImgPath} alt="Trading bot" legend="" />
           </ImageContainer>
           <article>
             <CardTitle>Front runner trading bot</CardTitle>
