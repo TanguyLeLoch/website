@@ -33,4 +33,7 @@ article  a {
 main {
   flex: 1;
 }
+footer {
+  padding-top: 20px;
+}
 `;
