@@ -1,5 +1,4 @@
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
-import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import SocialNetworkLinks from './components/SocialNetworkLinks/index.jsx';
 import { GlobalStyle } from './GlobalStyle';
@@ -23,7 +22,7 @@ function App() {
           </Route>
           <Route path="*" element={<Home />}></Route>
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </DimensionProvider>
     </BrowserRouter>
   );
