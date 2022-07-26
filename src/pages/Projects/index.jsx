@@ -92,10 +92,7 @@ function Projects() {
           </article>
         </CardLink>
         <CardLink to="/">
-          <CardTitle>NFT market place</CardTitle>
-        </CardLink>
-        <CardLink to="/">
-          <CardTitle>MEXC trading bot</CardTitle>
+          <CardTitle>Grid trading bot (coming soon)</CardTitle>
         </CardLink>
       </Layout>
     </>
