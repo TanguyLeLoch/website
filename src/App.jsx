@@ -1,4 +1,5 @@
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import SocialNetworkLinks from './components/SocialNetworkLinks/index.jsx';
 import { GlobalStyle } from './GlobalStyle';
@@ -13,16 +14,18 @@ function App() {
       <GlobalStyle />
       <DimensionProvider>
         <Navbar />
-        <SocialNetworkLinks />
-        <Routes>
-          <Route index path="/" element={<Home />}></Route>
-          <Route path="projects" element={<Outlet />}>
-            <Route index element={<Projects />}></Route>
-            <Route path="front-runner-trading-bot" element={<FrontRunnerTradingBot />}></Route>
-          </Route>
-          <Route path="*" element={<Home />}></Route>
-        </Routes>
-        {/* <Footer /> */}
+        <main>
+          <SocialNetworkLinks />
+          <Routes>
+            <Route index path="/" element={<Home />}></Route>
+            <Route path="projects" element={<Outlet />}>
+              <Route index element={<Projects />}></Route>
+              <Route path="front-runner-trading-bot" element={<FrontRunnerTradingBot />}></Route>
+            </Route>
+            <Route path="*" element={<Home />}></Route>
+          </Routes>
+        </main>
+        <Footer />
       </DimensionProvider>
     </BrowserRouter>
   );
