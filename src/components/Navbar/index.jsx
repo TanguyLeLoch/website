@@ -123,9 +123,9 @@ function NavBar() {
           <StyledLinkPanel to="projects" onClick={toggleBurgerExtended}>
             <SpanLink>Projects</SpanLink>
           </StyledLinkPanel>
-          <StyledLinkPanel as="a" href="resume-tanguy-le-loch.pdf">
+          {/* <StyledLinkPanel as="a" href="resume-tanguy-le-loch.pdf">
             <SpanLink>Resume</SpanLink>
-          </StyledLinkPanel>
+          </StyledLinkPanel> */}
         </NavLeftPanel>
       )}
       <StyledLine />
