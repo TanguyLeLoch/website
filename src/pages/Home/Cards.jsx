@@ -117,11 +117,11 @@ function initColumns(nbColumns, cardRefs) {
 function initContentList(cardRefs) {
   const age = getAge('1997-05-27T00:00:00', now) + ' yo';
   const headlinesAboutMe = [age, 'Paris', 'Freelance'];
-  const headlinesResume = ['2.5 years experience', "Master's degree"];
+  const headlinesResume = ['3 years experience', "Master's degree"];
   const introText =
     'Backend developer who knows a bit about frontend. Very attentive to every single optimization to have a more efficient sofware and a cleaner code. I always keep in mind the customer need to find an appropriate answer to the problem.';
   const resumeText =
-    'Worked professionnaly for 2.5 years. 1 for the french lottery group FDJ and 1.5 for a BSS running for several digital brand in telecom and utilities industry at triPica. I mainly develop professionally in Java 17 and the usual java stack, like springboot, hibernate, maven and other tools like openAPI, jenkins and git.';
+    'Worked professionally for almost 3 years. 1 for the french lottery group FDJ, 1.5 for a BSS running for several digital brand in telecom and utilities industry at triPica, and 4 months as a freelancer for Universign.  I mainly develop professionally in Java 17 and the usual java stack, like springboot, hibernate, maven and other tools like openAPI, jenkins and git. I also love the NodeJs stack with NestJs that I use for my side projects.';
 
   const content = [];
 
