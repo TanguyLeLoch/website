@@ -20,10 +20,30 @@ const triPicaDescription = (
     having the lowest memory impact to keep a software as efficient as possible. The second keypoint is having a very short time to market.
   </>
 );
+
+const universignDescription = (
+  <>
+    Backend development as a Freelancer for an electronic signature services. The
+    technology and methodology used were very modern with an hexagonal architecture, DDD, trunk based development, monorepo, microservices...
+    <br /> The transactional aspect and the API backward compatibility (for 0 service interruption during deployment) were a very important focused points.
+  </>
+);
 function Education() {
   return (
-    <Rubrik format="grid">
-      <Rubrik title={educationTitle} format="grid">
+    <Rubrik >
+
+      <Rubrik title={ExperienceTitle} >
+        <Moments date="September 2022 - December 2022" company="Universign" localisation="Paris" description={universignDescription} />
+        <Moments date="March 2021 - September 2022" company="triPica" localisation="Paris" description={triPicaDescription} />
+        <Moments
+          date="March 2020 -  March 2021"
+          company="Sopra Steria / FDJ"
+          localisation="Aix en Provence"
+          description="Backend development for a master data management system. Stack is EBX5, Java 8 and the usual Java stack (Spring, maven, hibernate)"
+        />
+      </Rubrik>
+
+      <Rubrik title={educationTitle} >
         <Moments
           date="2017 - 2020"
           company="Master Degree"
@@ -41,15 +61,6 @@ function Education() {
           company="A Level Degree"
           localisation="Lycée Yves Thepot"
           description="Scientific degree with engineering science option."
-        />
-      </Rubrik>
-      <Rubrik title={ExperienceTitle} format="grid">
-        <Moments date="2021 - nowadays" company="triPica" localisation="Paris" description={triPicaDescription} />
-        <Moments
-          date="2020 - 2021"
-          company="Sopra Steria / FDJ"
-          localisation="Aix en Provence"
-          description="Backend development for a master data management system. Stack is EBX5, Java 8 and the usual Java stack (Spring, maven, hibernate)"
         />
       </Rubrik>
     </Rubrik>

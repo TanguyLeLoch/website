@@ -60,6 +60,8 @@ function Skills() {
           <LogoImg src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original-wordmark.svg" alt="Vscodes" width={widthLogo} />
           <LogoImg src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain-wordmark.svg" alt="Git" width={widthLogo} />
           <LogoImg src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins" width={widthLogo} />
+          <LogoImg src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ" width={widthLogo} />
+
         </BundleLogo>
       </StyledCategory>
     </Rubrik>
