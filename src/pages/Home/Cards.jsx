@@ -9,6 +9,7 @@ import FrontRunnerBot from '../../components/CV/SideProjects/FrontRunnerBot';
 import { Card } from '../../components/SectionComponents/Card';
 
 import { useState, useEffect, useRef } from 'react';
+import GridTradingBot from '../../components/CV/SideProjects/GridTradingBot';
 const now = new Date();
 
 const MasonryLayout = styled.div`
@@ -168,6 +169,7 @@ function initContentList(cardRefs) {
           introText="I use to code for many kind of stuff on my free time. Recently it has been essentially about crypto programming."
         >
           <FrontRunnerBot />
+          <GridTradingBot/>
         </Section>
       </Card>
     ),
