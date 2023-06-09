@@ -84,6 +84,8 @@ const SpanLink = styled.span`
     transition: transform 0.3s ease-out;
   }
 `;
+const RESUME_PDF = "resume-tanguy-leloch.pdf";
+
 function NavBar() {
   const windowDimension = useContext(DimensionContext);
   const [burgerExtended, setBurgerExtended] = useState(false);
@@ -109,7 +111,7 @@ function NavBar() {
             <StyledLink to="projects">
               <SpanLink>Projects</SpanLink>
             </StyledLink>
-            <StyledLink as="a" href="resume-tanguy-le-loch.pdf">
+            <StyledLink as="a" href={RESUME_PDF}>
               <SpanLink>Resume</SpanLink>
             </StyledLink>
           </Links>
@@ -123,7 +125,7 @@ function NavBar() {
           <StyledLinkPanel to="projects" onClick={toggleBurgerExtended}>
             <SpanLink>Projects</SpanLink>
           </StyledLinkPanel>
-          <StyledLinkPanel as="a" href="resume-tanguy-le-loch.pdf">
+          <StyledLinkPanel as="a" href={RESUME_PDF}>
             <SpanLink>Resume</SpanLink>
           </StyledLinkPanel>
         </NavLeftPanel>
