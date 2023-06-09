@@ -38,7 +38,7 @@ const StyledLink = styled(Link)`
 const StyledLinkPanel = styled(Link)`
   color: ${colors.primary};
   font-weight: bold;
-  font-size: 14 px;
+  font-size: 14px;
   text-decoration: none;
   padding: 15px;
 `;
