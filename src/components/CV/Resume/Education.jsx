@@ -33,7 +33,7 @@ function Education() {
     <Rubrik >
 
       <Rubrik title={ExperienceTitle} >
-        <Moments date="September 2022 - December 2022" company="Universign" localisation="Paris" description={universignDescription} />
+        <Moments date="September 2022 - March 2023" company="Universign" localisation="Paris" description={universignDescription} />
         <Moments date="March 2021 - September 2022" company="triPica" localisation="Paris" description={triPicaDescription} />
         <Moments
           date="March 2020 -  March 2021"
