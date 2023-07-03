@@ -84,7 +84,7 @@ const SpanLink = styled.span`
     transition: transform 0.3s ease-out;
   }
 `;
-const RESUME_PDF = "resume-tanguy-leloch.pdf";
+const RESUME_PDF = "/resume-tanguy-leloch.pdf";
 
 function NavBar() {
   const windowDimension = useContext(DimensionContext);
