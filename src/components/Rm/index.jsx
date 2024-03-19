@@ -4,6 +4,8 @@ function Rm() {
   const [lastWeight, setLastWeight] = useState('');
   const [lastRep, setLastRep] = useState(10);
   const [increment, setIncrement] = useState(5);
+  const [minRep, setMinRep] = useState(8);
+  const [maxRep, setMaxRep] = useState(10);
   const [resultsMatrix, setResultsMatrix] = useState([]);
 
   // Function to calculate 1RM based on the Epley formula
@@ -70,6 +72,26 @@ function Rm() {
             id="increment"
             value={increment}
             onChange={(e) => setIncrement(parseInt(e.target.value))}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="minRep">Min nbRep:</label>
+          <input
+            type="number"
+            id="minRep"
+            value={minRep}
+            onChange={(e) => setMinRep(parseInt(e.target.value))}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="maxRep">Max nbRep:</label>
+          <input
+            type="number"
+            id="maxRep"
+            value={maxRep}
+            onChange={(e) => setMaxRep(parseInt(e.target.value))}
             required
           />
         </div>
