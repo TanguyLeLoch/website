@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import FrontRunnerTradingBot from './pages/Projects/front-runner-trading-bot';
 import { DimensionProvider } from './utils/context';
+import Rm from './components/Rm';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route index element={<Projects />}></Route>
               <Route path="front-runner-trading-bot" element={<FrontRunnerTradingBot />}></Route>
             </Route>
+            <Route path="rm" element={<Rm />}></Route>
             <Route path="*" element={<Home />}></Route>
           </Routes>
         </main>
