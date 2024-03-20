@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import FrontRunnerTradingBot from './pages/Projects/front-runner-trading-bot';
 import { DimensionProvider } from './utils/context';
-import Rm from './components/Rm';
+import Rm from './pages/Rm';
 
 function App() {
   return (
