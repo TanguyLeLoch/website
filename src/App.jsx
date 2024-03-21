@@ -11,7 +11,7 @@ import Rm from './pages/Rm';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="website/">
       <GlobalStyle />
       <DimensionProvider>
         <Navbar />
