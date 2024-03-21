@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.fd2df7ed.css","mappings":"AACA,iBAGE,qBAAsB,CACtB,QAAS,CACT,SACF,CACA,MAEE,eACF","sources":["index.css"],"sourcesContent":["/* reset  */\n*,\n::before,\n::after {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n}\nol,\nul {\n  list-style: none;\n}\n"],"names":[],"sourceRoot":""}
