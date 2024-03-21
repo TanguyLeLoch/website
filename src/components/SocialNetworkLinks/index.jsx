@@ -3,7 +3,7 @@ const HoverContainer = styled.div`
   position: fixed;
   left: 5px;
   top: 40%;
-  padding: 30px 31px 32px 0px;
+  padding: 30px 31px 32px 0;
   &:hover {
     svg {
       fill: rgba(255, 255, 255, 0.7);
@@ -15,7 +15,7 @@ const BundleLinks = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.4);
   border-radius: 15px;
   padding: 5px;
 

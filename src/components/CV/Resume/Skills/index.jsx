@@ -12,7 +12,7 @@ const StyledCategory = styled.div`
 const widthLogo = 90;
 const nbElemsPerLine = 4;
 const BundleLogo = styled.div`
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.4);
   border-radius: 25px;
   display: flex;
   flex-wrap: wrap;

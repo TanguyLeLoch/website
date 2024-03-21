@@ -14,7 +14,7 @@ h2,
 h3,
 h4 {
   font-weight: bold;
-  padding: 10px 0px;
+  padding: 10px 0;
   color: white;
 }
 a {
