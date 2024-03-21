@@ -17,8 +17,8 @@ const StyledImage = styled.img`
 const Name = styled.span`
   position: absolute;
   bottom: 12%;
-  left: 0%;
-  right: 0%;
+  left: 0;
+  right: 0;
   font-size: calc(10px + 0.8rem);
   font-weight: bold;
   color: ${colors.primary};
@@ -29,8 +29,8 @@ const Job = styled.span`
   font-weight: bold;
   font-size: calc(5px + 0.8rem);
   bottom: 5%;
-  left: 0%;
-  right: 0%;
+  left: 0;
+  right: 0;
   color: ${colors.secondary};
 `;
 const SpinnerContainer = styled.div`

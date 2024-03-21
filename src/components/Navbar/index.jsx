@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { DimensionContext } from '../../utils/context';
 import colors from '../../utils/style/colors';
 import Hamburger from '../utils/Hamburger';
+import { STATIC_PREFIX_PATH } from '../../utils/Globals';
 
 const StyledNav = styled.nav`
   background-color: ${colors.navbar};
@@ -84,7 +85,7 @@ const SpanLink = styled.span`
     transition: transform 0.3s ease-out;
   }
 `;
-const RESUME_PDF = "/resume-tanguy-leloch.pdf";
+const RESUME_PDF = STATIC_PREFIX_PATH + "resume-tanguy-leloch.pdf";
 
 function NavBar() {
   const windowDimension = useContext(DimensionContext);
