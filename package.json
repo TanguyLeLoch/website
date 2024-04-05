@@ -1,5 +1,6 @@
 {
   "name": "website",
+  "homepage": "https://tanguyleloch.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
