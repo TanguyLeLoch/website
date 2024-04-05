@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors';
 import { StyledLine } from '../Navbar';
 import { LogoGithub, LogoLinkedin } from '../SocialNetworkLinks';
+import { Link } from 'react-router-dom';
+
 
 const FooterContent = styled.div`
   display: flex;
@@ -24,6 +26,7 @@ const FooterContent = styled.div`
     align-items: center;
     gap: 5px;
   }
+  
 `;
 function Footer() {
   return (
@@ -38,7 +41,11 @@ function Footer() {
           <LogoLinkedin />
           <span>LinkedIn</span>
         </a>
+        <Link to="rm">
+          <span>1 rep max calculator</span>
+        </Link>
       </FooterContent>
+
     </footer>
   );
 }

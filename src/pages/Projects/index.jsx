@@ -30,7 +30,7 @@ const CardLink = styled(Link)`
   display: flex;
   align-items: center;
   width: 100%;
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.4);
   padding: 20px;
   text-decoration: none;
   transform: scale(1);
