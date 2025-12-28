@@ -10,7 +10,7 @@ pipeline {
         DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
         IMAGE_NAME = 'website'
         IMAGE_TAG = "${BUILD_NUMBER}"
-        DOKPLOY_WEBHOOK = 'https://dokploy2.tanguyleloch.com/api/deploy/YOUR_WEBHOOK_ID'
+        DOKPLOY_WEBHOOK = 'https://dokploy2.tanguyleloch.com/api/deploy/qyY0mAm6uqXIxrZjCAWVs'
     }
 
     stages {
