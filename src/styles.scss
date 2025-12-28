@@ -1,0 +1,90 @@
+@use "tailwindcss";
+
+@plugin "tailwindcss-primeui";
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* PrimeNG color utilities */
+.p-primary {
+  color: var(--p-primary-color) !important;
+}
+
+.p-surface-500 {
+  color: var(--p-surface-500) !important;
+}
+
+.p-surface-400 {
+  color: var(--p-surface-400) !important;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--p-surface-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--p-surface-400);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--p-surface-500);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: var(--p-surface-800);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--p-surface-600);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--p-surface-500);
+}
+
+/* Glassmorphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dark .glass {
+  background: rgba(30, 30, 30, 0.8);
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, var(--p-surface-50) 0%, var(--p-primary-50) 100%);
+}
+
+.dark .gradient-bg {
+  background: linear-gradient(135deg, var(--p-surface-900) 0%, var(--p-surface-800) 100%);
+}
+
+/* Font mono utility */
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+}

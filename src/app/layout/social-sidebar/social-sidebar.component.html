@@ -1,0 +1,13 @@
+<aside class="fixed left-4 bottom-0 hidden lg:flex flex-col items-center gap-4 z-40">
+  @for (link of profileData.socialLinks; track link.platform) {
+    <a 
+      [href]="link.url" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="text-muted-color hover:text-primary transition-colors text-xl hover:scale-110 transform"
+      [attr.aria-label]="link.platform">
+      <i [class]="link.icon"></i>
+    </a>
+  }
+  <div class="w-px h-24 bg-surface-300 dark:bg-surface-600"></div>
+</aside>

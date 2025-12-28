@@ -1,0 +1,24 @@
+<footer class="bg-surface-50 dark:bg-surface-900 border-t border-surface py-8 mt-16">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <!-- Copyright -->
+      <p class="text-muted-color text-sm">
+        &copy; {{ currentYear }} {{ profileData.profile.name }}. All rights reserved.
+      </p>
+
+      <!-- Social Links -->
+      <div class="flex items-center gap-4">
+        @for (link of profileData.socialLinks; track link.platform) {
+          <a 
+            [href]="link.url" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-muted-color hover:text-primary transition-colors text-xl"
+            [attr.aria-label]="link.platform">
+            <i [class]="link.icon"></i>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</footer>

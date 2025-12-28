@@ -1,0 +1,74 @@
+<header class="sticky top-0 z-50 glass border-b border-surface">
+  <nav class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo/Name -->
+    <a routerLink="/" class="text-xl font-semibold text-color hover:text-primary transition-colors font-mono">
+      {{ profileData.profile.name }}
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <div class="hidden md:flex items-center gap-6">
+      @for (item of menuItems; track item.label) {
+        <a 
+          [routerLink]="item.routerLink" 
+          routerLinkActive="text-primary"
+          [routerLinkActiveOptions]="{ exact: item.routerLink === '/' }"
+          class="text-muted-color hover:text-color transition-colors">
+          {{ item.label }}
+        </a>
+      }
+      <a 
+        [href]="profileData.profile.resumePdf" 
+        target="_blank"
+        class="text-muted-color hover:text-color transition-colors">
+        Resume
+      </a>
+    </div>
+
+    <!-- Theme Toggle & Mobile Menu -->
+    <div class="flex items-center gap-2">
+      <p-button 
+        [icon]="themeService.isDark() ? 'pi pi-sun' : 'pi pi-moon'"
+        [rounded]="true"
+        [text]="true"
+        severity="secondary"
+        (onClick)="toggleTheme()"
+        ariaLabel="Toggle theme" />
+      
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <p-button 
+          [icon]="mobileMenuOpen() ? 'pi pi-times' : 'pi pi-bars'"
+          [rounded]="true"
+          [text]="true"
+          severity="secondary"
+          (onClick)="toggleMobileMenu()"
+          ariaLabel="Menu" />
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Dropdown -->
+  @if (mobileMenuOpen()) {
+    <div class="md:hidden glass border-t border-surface">
+      <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-4">
+        @for (item of menuItems; track item.label) {
+          <a 
+            [routerLink]="item.routerLink" 
+            routerLinkActive="text-primary"
+            [routerLinkActiveOptions]="{ exact: item.routerLink === '/' }"
+            (click)="closeMobileMenu()"
+            class="text-muted-color hover:text-color transition-colors text-lg">
+            {{ item.label }}
+          </a>
+        }
+        <a 
+          [href]="profileData.profile.resumePdf" 
+          target="_blank"
+          (click)="closeMobileMenu()"
+          class="text-muted-color hover:text-color transition-colors text-lg">
+          Resume
+        </a>
+      </div>
+    </div>
+  }
+</header>

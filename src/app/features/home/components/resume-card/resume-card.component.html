@@ -1,0 +1,131 @@
+<div appFadeIn [fadeDelay]="0.2">
+  <p-card styleClass="h-full">
+    <ng-template #header>
+      <div class="p-4 pb-0">
+        <h2 class="text-xl font-bold text-color font-mono">Resume</h2>
+      </div>
+    </ng-template>
+
+    <div class="space-y-6">
+      <!-- Headlines -->
+      <div class="flex flex-wrap gap-2">
+        @for (headline of headlines; track headline) {
+          <p-tag [value]="headline" severity="secondary" [rounded]="true" />
+        }
+      </div>
+
+      <!-- Intro -->
+      <p class="text-muted-color leading-relaxed">
+        {{ profileData.resumeIntro }}
+      </p>
+
+      <p-divider />
+
+      <!-- Skills Section -->
+      <div>
+        <h3 class="text-lg font-semibold text-color mb-4">Skills</h3>
+        
+        <div class="space-y-4">
+          <!-- Backend -->
+          <div>
+            <h4 class="text-sm font-medium text-muted-color mb-2">Backend</h4>
+            <div class="flex flex-wrap gap-3" appStaggerChildren>
+              @for (skill of backendSkills; track skill.name) {
+                <div 
+                  appHoverScale
+                  class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-50 dark:bg-surface-800">
+                  <img [src]="skill.logoUrl" [alt]="skill.name" class="w-6 h-6" />
+                  <span class="text-sm text-color">{{ skill.name }}</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Frontend -->
+          <div>
+            <h4 class="text-sm font-medium text-muted-color mb-2">Frontend</h4>
+            <div class="flex flex-wrap gap-3" appStaggerChildren>
+              @for (skill of frontendSkills; track skill.name) {
+                <div 
+                  appHoverScale
+                  class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-50 dark:bg-surface-800">
+                  <img [src]="skill.logoUrl" [alt]="skill.name" class="w-6 h-6" />
+                  <span class="text-sm text-color">{{ skill.name }}</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div>
+            <h4 class="text-sm font-medium text-muted-color mb-2">Tools</h4>
+            <div class="flex flex-wrap gap-3" appStaggerChildren>
+              @for (skill of toolsSkills; track skill.name) {
+                <div 
+                  appHoverScale
+                  class="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-50 dark:bg-surface-800">
+                  <img [src]="skill.logoUrl" [alt]="skill.name" class="w-6 h-6" />
+                  <span class="text-sm text-color">{{ skill.name }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p-divider />
+
+      <!-- Experience Timeline -->
+      <div>
+        <h3 class="text-lg font-semibold text-color mb-4 flex items-center gap-2">
+          <i class="pi pi-briefcase"></i>
+          Experience
+        </h3>
+        <p-timeline [value]="profileData.experiences" align="left">
+          <ng-template #content let-exp>
+            <div class="mb-6">
+              <div class="flex flex-col md:flex-row md:items-center gap-1 md:gap-3 mb-2">
+                <span class="font-semibold text-color">{{ exp.company }}</span>
+                <span class="text-muted-color text-sm">{{ exp.location }}</span>
+              </div>
+              <p class="text-sm text-muted-color">{{ exp.dateRange }}</p>
+              <p class="text-muted-color mt-2 text-sm leading-relaxed">{{ exp.description }}</p>
+            </div>
+          </ng-template>
+          <ng-template #marker>
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-contrast">
+              <i class="pi pi-briefcase text-sm"></i>
+            </span>
+          </ng-template>
+        </p-timeline>
+      </div>
+
+      <p-divider />
+
+      <!-- Education Timeline -->
+      <div>
+        <h3 class="text-lg font-semibold text-color mb-4 flex items-center gap-2">
+          <i class="pi pi-graduation-cap"></i>
+          Education
+        </h3>
+        <p-timeline [value]="profileData.education" align="left">
+          <ng-template #content let-edu>
+            <div class="mb-6">
+              <div class="flex flex-col md:flex-row md:items-center gap-1 md:gap-3 mb-2">
+                <span class="font-semibold text-color">{{ edu.degree }}</span>
+                <span class="text-muted-color text-sm">{{ edu.institution }}</span>
+              </div>
+              <p class="text-sm text-muted-color">{{ edu.dateRange }}</p>
+              <p class="text-muted-color mt-2 text-sm leading-relaxed">{{ edu.description }}</p>
+            </div>
+          </ng-template>
+          <ng-template #marker>
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-contrast">
+              <i class="pi pi-graduation-cap text-sm"></i>
+            </span>
+          </ng-template>
+        </p-timeline>
+      </div>
+    </div>
+  </p-card>
+</div>
