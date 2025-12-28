@@ -7,12 +7,12 @@ import { Profile, SocialLink, Service, Experience, Education, Skill, Project } f
 export class ProfileDataService {
   readonly profile: Profile = {
     name: 'Tanguy Le Loch',
-    jobTitle: 'Developer',
+    jobTitle: 'Fullstack Developer',
     birthDate: new Date('1997-05-27'),
     location: 'Paris',
     status: 'Freelance',
     profilePicture: 'assets/images/profilePicture.png',
-    introText: `Backend developer who knows a bit about frontend. Very attentive to every single optimization to have a more efficient software and a cleaner code. I always keep in mind the customer need to find an appropriate answer to the problem.`,
+    introText: `Fullstack developer with 5 years of experience. Very attentive to every single optimization to have a more efficient software and a cleaner code. I always keep in mind the customer need to find an appropriate answer to the problem.`,
     resumePdf: 'resume-tanguy-leloch.pdf'
   };
 
@@ -146,7 +146,7 @@ export class ProfileDataService {
   }
 
   getYearsOfExperience(): number {
-    return 3;
+    return 5;
   }
 
   getSkillsByCategory(category: 'backend' | 'frontend' | 'tools'): Skill[] {
