@@ -1,23 +1,98 @@
-<div appFadeIn class="relative overflow-hidden rounded-2xl">
-  <p-card styleClass="!bg-transparent !border-0 !shadow-none">
-    <div class="relative">
-      <!-- Profile Image -->
-      <div class="aspect-square overflow-hidden rounded-xl">
-        <img 
-          [src]="profileData.profile.profilePicture" 
+<div appFadeIn class="glass-card overflow-hidden lg:sticky lg:top-24">
+  <div class="relative">
+    <!-- Profile Image with glass frame -->
+    <div class="p-4">
+      <div class="aspect-square overflow-hidden rounded-2xl relative group">
+        <img
+          [src]="profileData.profile.profilePicture"
           [alt]="profileData.profile.name"
-          class="w-full h-full object-cover" />
-      </div>
-      
-      <!-- Name Overlay -->
-      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-        <h1 class="text-2xl font-bold text-white font-mono">
-          {{ profileData.profile.name }}
-        </h1>
-        <p class="text-primary-300 font-medium">
-          {{ profileData.profile.jobTitle }}
-        </p>
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+
+        <!-- Gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
       </div>
     </div>
-  </p-card>
+
+    <!-- Info section with glass effect -->
+    <div class="p-6 pt-0">
+      <!-- Name and title -->
+      <h1 class="text-2xl font-bold text-gradient font-mono mb-1">
+        {{ profileData.profile.name }}
+      </h1>
+      <p class="text-primary font-medium mb-4">
+        {{ profileData.profile.jobTitle }}
+      </p>
+
+      <!-- Quick info pills -->
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="glass-pill px-3 py-1.5 rounded-full text-sm text-color">
+          <i class="pi pi-map-marker text-primary mr-1.5"></i>
+          {{ profileData.profile.location }}
+        </span>
+        <span class="glass-pill px-3 py-1.5 rounded-full text-sm text-color">
+          <i class="pi pi-check-circle text-green-500 mr-1.5"></i>
+          {{ profileData.profile.status }}
+        </span>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="space-y-2 mb-4">
+        <a 
+          [href]="'mailto:' + profileData.profile.email"
+          class="flex items-center gap-2 text-sm text-muted-color hover:text-primary transition-colors">
+          <i class="pi pi-envelope text-primary"></i>
+          {{ profileData.profile.email }}
+        </a>
+        <a 
+          [href]="'tel:' + profileData.profile.phone"
+          class="flex items-center gap-2 text-sm text-muted-color hover:text-primary transition-colors">
+          <i class="pi pi-phone text-primary"></i>
+          {{ profileData.profile.phone }}
+        </a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="flex gap-2 mb-4">
+        @for (link of profileData.socialLinks; track link.platform) {
+          @if (link.platform === 'github' || link.platform === 'linkedin') {
+            <a
+              [href]="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-10 h-10 glass-subtle hover:glass rounded-xl flex items-center justify-center text-muted-color hover:text-primary transition-all"
+              [attr.aria-label]="link.platform">
+              <i [class]="link.icon" class="text-lg"></i>
+            </a>
+          }
+        }
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex gap-2">
+        <a
+          [href]="'mailto:' + profileData.profile.email"
+          class="flex-1 glass-subtle hover:glass px-4 py-2.5 rounded-xl text-center text-sm font-medium text-color transition-all hover:glow-primary-sm">
+          <i class="pi pi-envelope mr-2"></i>Contact
+        </a>
+        <a
+          [href]="profileData.profile.resumePdf"
+          target="_blank"
+          class="flex-1 glass-subtle hover:glass px-4 py-2.5 rounded-xl text-center text-sm font-medium text-color transition-all hover:glow-primary-sm">
+          <i class="pi pi-download mr-2"></i>Resume
+        </a>
+      </div>
+
+      <!-- Languages -->
+      <div class="mt-4 pt-4 border-t border-[var(--glass-border-subtle)]">
+        <h4 class="text-xs font-medium text-muted-color mb-2 uppercase tracking-wide">Languages</h4>
+        <div class="flex flex-wrap gap-2">
+          @for (lang of profileData.languages; track lang.name) {
+            <span class="glass-pill px-3 py-1 rounded-full text-xs text-color">
+              {{ lang.name }} - {{ lang.level }}
+            </span>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

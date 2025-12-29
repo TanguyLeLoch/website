@@ -11,11 +11,13 @@ export class FadeInDirective implements AfterViewInit, OnDestroy {
   private readonly el = inject(ElementRef);
   private readonly platformId = inject(PLATFORM_ID);
   private scrollTrigger: ScrollTrigger | null = null;
+  private animation: gsap.core.Tween | null = null;
 
   @Input() appFadeIn: 'up' | 'down' | 'left' | 'right' | 'none' | '' = 'up';
   @Input() fadeDelay = 0;
-  @Input() fadeDuration = 0.6;
-  @Input() fadeDistance = 30;
+  @Input() fadeDuration = 0.8;
+  @Input() fadeDistance = 40;
+  @Input() fadeBlur = true; // Add blur effect for glass elements
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -23,34 +25,54 @@ export class FadeInDirective implements AfterViewInit, OnDestroy {
     gsap.registerPlugin(ScrollTrigger);
 
     const element = this.el.nativeElement;
-    const fromVars: gsap.TweenVars = {
-      opacity: 0,
-      duration: this.fadeDuration,
-      delay: this.fadeDelay,
-      ease: 'power2.out'
+
+    // Set initial state with optional blur for glass effect
+    const initialState: gsap.TweenVars = {
+      opacity: 0
     };
+
+    if (this.fadeBlur) {
+      initialState.filter = 'blur(8px)';
+    }
 
     const direction = this.appFadeIn || 'up';
     switch (direction) {
       case 'up':
-        fromVars.y = this.fadeDistance;
+        initialState.y = this.fadeDistance;
         break;
       case 'down':
-        fromVars.y = -this.fadeDistance;
+        initialState.y = -this.fadeDistance;
         break;
       case 'left':
-        fromVars.x = this.fadeDistance;
+        initialState.x = this.fadeDistance;
         break;
       case 'right':
-        fromVars.x = -this.fadeDistance;
+        initialState.x = -this.fadeDistance;
         break;
     }
 
-    gsap.from(element, {
-      ...fromVars,
+    gsap.set(element, initialState);
+
+    // Animate to final state
+    const toVars: gsap.TweenVars = {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      duration: this.fadeDuration,
+      delay: this.fadeDelay,
+      ease: 'power3.out',
+      clearProps: 'transform,filter'
+    };
+
+    if (this.fadeBlur) {
+      toVars.filter = 'blur(0px)';
+    }
+
+    this.animation = gsap.to(element, {
+      ...toVars,
       scrollTrigger: {
         trigger: element,
-        start: 'top 85%',
+        start: 'top 88%',
         toggleActions: 'play none none none'
       }
     });
@@ -58,5 +80,6 @@ export class FadeInDirective implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.scrollTrigger?.kill();
+    this.animation?.kill();
   }
 }

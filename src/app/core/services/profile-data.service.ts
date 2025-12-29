@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Profile, SocialLink, Service, Experience, Education, Skill, Project } from '../models/profile.model';
+import { Profile, SocialLink, Service, Experience, Education, Skill, Project, Language } from '../models/profile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,115 +7,178 @@ import { Profile, SocialLink, Service, Experience, Education, Skill, Project } f
 export class ProfileDataService {
   readonly profile: Profile = {
     name: 'Tanguy Le Loch',
-    jobTitle: 'Fullstack Developer',
+    jobTitle: 'Java / Angular Software Developer',
     birthDate: new Date('1997-05-27'),
-    location: 'Paris',
-    status: 'Freelance',
+    location: 'Bangkok, Thailand',
+    status: 'Available',
     profilePicture: 'assets/images/profilePicture.png',
-    introText: `Fullstack developer with 5 years of experience. Very attentive to every single optimization to have a more efficient software and a cleaner code. I always keep in mind the customer need to find an appropriate answer to the problem.`,
-    resumePdf: 'resume-tanguy-leloch.pdf'
+    introText: `I am a software developer with 5 years of experience, specializing in Java particularly with the Spring Framework and proficient in full-stack development using Angular. I thrive on learning new technologies, embracing challenges, and collaborating effectively with my team to drive continuous improvement.`,
+    resumePdf: 'resume-tanguy-leloch.pdf',
+    email: 'lelochtanguy@gmail.com',
+    phone: '+66 96 571 7804',
+    website: 'tanguyleloch.com'
   };
 
   readonly socialLinks: SocialLink[] = [
-    { platform: 'linkedin', url: 'https://www.linkedin.com/in/tanguyleloch/', icon: 'pi pi-linkedin' },
-    { platform: 'github', url: 'https://github.com/TanguyLeLoch', icon: 'pi pi-github' }
+    { platform: 'email', url: 'mailto:lelochtanguy@gmail.com', icon: 'pi pi-envelope', label: 'lelochtanguy@gmail.com' },
+    { platform: 'phone', url: 'tel:+66965717804', icon: 'pi pi-phone', label: '+66 96 571 7804' },
+    { platform: 'github', url: 'https://github.com/TanguyLeLoch', icon: 'pi pi-github', label: 'github.com/TanguyLeLoch' },
+    { platform: 'linkedin', url: 'https://www.linkedin.com/in/tanguyleloch/', icon: 'pi pi-linkedin', label: 'linkedin.com/in/tanguyleloch' },
+    { platform: 'website', url: 'https://tanguyleloch.com', icon: 'pi pi-globe', label: 'tanguyleloch.com' }
   ];
 
   readonly services: Service[] = [
     {
-      title: 'Development',
-      icon: 'pi pi-code',
-      description: 'Building a custom tailored solution based on your technical need.'
+      title: 'Backend Development',
+      icon: 'pi pi-server',
+      description: 'Building robust APIs and services with Java Spring, following DDD and clean architecture principles.'
     },
     {
-      title: 'Unit Test',
-      icon: 'pi pi-check-circle',
-      description: 'Writing development associated unit tests to ensure a good behavior and avoid any regression in the future.'
+      title: 'Frontend Development',
+      icon: 'pi pi-desktop',
+      description: 'Creating modern, responsive user interfaces with Angular, TypeScript, and modern CSS frameworks.'
     },
     {
-      title: 'Documentation',
-      icon: 'pi pi-book',
-      description: 'Writing the documentation and keep it up to date.'
+      title: 'DevOps & CI/CD',
+      icon: 'pi pi-cog',
+      description: 'Setting up continuous integration pipelines, monitoring, and maintaining production systems.'
     }
   ];
 
-  readonly resumeIntro = `Worked professionally for almost 3 years. 1 for the french lottery group FDJ, 1.5 for a BSS running for several digital brand in telecom and utilities industry at triPica, and 4 months as a freelancer for Universign. I mainly develop professionally in Java 17 and the usual java stack, like springboot, hibernate, maven and other tools like openAPI, jenkins and git. I also love the NodeJs stack with NestJs that I use for my side projects.`;
+  readonly languages: Language[] = [
+    { name: 'French', level: 'Native speaker' },
+    { name: 'English', level: 'Fluent' }
+  ];
+
+  readonly hobbies: string[] = ['Fitness', 'Cryptocurrencies', 'Investing', 'Programming'];
+
+  readonly resumeIntro = `5 years of professional experience building enterprise applications. Specialized in Java/Spring backend development with expertise in Angular frontend. Experienced with modern methodologies including DDD, TDD, and microservices architecture.`;
 
   readonly experiences: Experience[] = [
     {
-      dateRange: 'September 2022 - March 2023',
+      dateRange: '2023 - Present',
+      duration: '1.5 year',
+      role: 'Full Stack Developer',
+      company: 'Alpega TMS',
+      location: 'Khon Kaen / Bangkok, Thailand',
+      description: 'Working on a big transportation management system with over 30M LoC, I became a reference for the new Ocean Booking feature. Reduced development cycle time by ~90% through JBoss server optimization for 15+ developers. Collaborated with 20+ developers across 5 international offices. Worked on integration with GLS, INTTRA, and other logistics systems.',
+      stack: ['Java 17', 'Angular', 'PL/SQL', 'Oracle DB']
+    },
+    {
+      dateRange: '2022 - 2023',
+      duration: '1 year',
+      role: 'Backend Developer',
       company: 'Universign',
-      location: 'Paris',
-      description: 'Backend development as a Freelancer for an electronic signature services. The technology and methodology used were very modern with an hexagonal architecture, DDD, trunk based development, monorepo, microservices... The transactional aspect and the API backward compatibility (for 0 service interruption during deployment) were a very important focused points.'
+      location: 'Paris, France',
+      description: 'Backend development for an e-signature solution. We used modern techniques like hexagonal architecture, DDD, trunk-based development, and continuous integration with backward-compatible APIs. Maintained 99.99% API uptime while handling 50,000+ daily e-signatures. Part of 2 cross-functional squads (8 developers total) delivering API updates for registration and transaction services.',
+      stack: ['Java 8', 'REST', 'Spring', 'MongoDB', 'Maven']
     },
     {
-      dateRange: 'March 2021 - September 2022',
+      dateRange: '2021 - 2022',
+      duration: '1.5 year',
+      role: 'Backend Developer',
       company: 'triPica',
-      location: 'Paris',
-      description: 'Backend development for a real-time utilities/telcos BSS platform. Cutting edge stack: Java 17, microservices architecture, AWS server, continuous integration. One quarter of my time is devops activity for debug and fix production issues. First keypoint is the quality of development for having the lowest memory impact to keep a software as efficient as possible. The second keypoint is having a very short time to market.'
+      location: 'Paris, France',
+      description: 'Backend development for a real-time utilities/telcos BSS platform serving 500,000+ customers. As developer on-call, maintained 100% SLA compliance while resolving production incidents. Successfully migrated a major B2B customer.',
+      stack: ['Java 17', 'OpenAPI V3', 'Spring', 'Hibernate', 'Maven']
     },
     {
-      dateRange: 'March 2020 - March 2021',
-      company: 'Sopra Steria / FDJ',
-      location: 'Aix en Provence',
-      description: 'Backend development for a master data management system. Stack is EBX5, Java 8 and the usual Java stack (Spring, maven, hibernate)'
+      dateRange: '2020 - 2021',
+      duration: '1 year',
+      role: 'Backend Developer',
+      company: 'Sopra Steria',
+      location: 'Aix-en-Provence, France',
+      description: 'Backend development for a master data management system used as the central piece of one of the largest information systems in France. The information system was so extensive that we had to operate within a SAFe Agile methodology.',
+      stack: ['EBX5', 'Java 8', 'Swagger V2', 'Spring', 'Hibernate', 'Maven']
     }
   ];
 
   readonly education: Education[] = [
     {
       dateRange: '2017 - 2020',
-      degree: 'Master Degree',
+      duration: '3 years',
+      degree: "Master's Degree in Engineering",
       institution: 'Seatech - University of Toulon',
-      description: 'Master Degree (French Engineering Diploma) specialized in signal processing, data science and IT systems.'
+      description: 'French Diplôme d\'Ingénieur - Computer science, computer vision, and data science specialization. Main subjects were Java, C++, and MATLAB development, detection, and underwater acoustics. Internship at BU-CROCCS Laboratory in Bangkok on computer vision, working on hand-controlled software.'
     },
     {
       dateRange: '2014 - 2017',
-      degree: 'Bachelor Degree',
+      duration: '3 years',
+      degree: "Bachelor's Degree in Science of Engineering",
       institution: 'University of Rennes',
-      description: 'Bachelor Degree about mechanics and engineering science.'
-    },
-    {
-      dateRange: '2011 - 2014',
-      degree: 'A Level Degree',
-      institution: 'Lycée Yves Thepot',
-      description: 'Scientific degree with engineering science option.'
+      description: 'Engineering and mechanical specialization.'
     }
   ];
 
   readonly skills: Skill[] = [
     // Backend
-    { name: 'Java', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg', category: 'backend' },
-    { name: 'Spring', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original-wordmark.svg', category: 'backend' },
-    { name: 'Node', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg', category: 'backend' },
-    { name: 'MongoDB', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain-wordmark.svg', category: 'backend' },
+    { name: 'Java', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', category: 'backend' },
+    { name: 'Spring', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg', category: 'backend' },
+    { name: 'Hibernate', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-original.svg', category: 'backend' },
+    { name: 'Maven', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/maven/maven-original.svg', category: 'backend' },
+    { name: 'Oracle DB', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg', category: 'backend' },
+    { name: 'MongoDB', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', category: 'backend' },
+    { name: 'NodeJS', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', category: 'backend' },
     // Frontend
-    { name: 'React', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', category: 'frontend' },
     { name: 'JavaScript', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', category: 'frontend' },
-    { name: 'CSS', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg', category: 'frontend' },
-    { name: 'HTML', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain-wordmark.svg', category: 'frontend' },
-    // Tools
-    { name: 'VSCode', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original-wordmark.svg', category: 'tools' },
-    { name: 'Git', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain-wordmark.svg', category: 'tools' },
-    { name: 'Jenkins', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg', category: 'tools' },
-    { name: 'IntelliJ', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg', category: 'tools' }
+    { name: 'TypeScript', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', category: 'frontend' },
+    { name: 'Angular', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg', category: 'frontend' },
+    { name: 'HTML', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', category: 'frontend' },
+    { name: 'CSS', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', category: 'frontend' },
+    // Other
+    { name: 'Agile', category: 'other' },
+    { name: 'Git', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', category: 'other' },
+    { name: 'CI/CD', category: 'other' },
+    { name: 'TDD', category: 'other' },
+    { name: 'DDD', category: 'other' },
+    { name: 'SOLID', category: 'other' },
+    { name: 'Clean Code', category: 'other' },
+    { name: 'Design Patterns', category: 'other' }
   ];
 
-  readonly sideProjectsIntro = `I use to code for many kind of stuff on my free time. Recently it has been essentially about crypto programming.`;
+  readonly sideProjectsIntro = `I love coding on my free time. Recently it has been essentially about crypto programming and blockchain technologies.`;
 
   readonly projects: Project[] = [
+    {
+      id: 'ftax',
+      title: 'Ftax - On-chain Profit Calculator',
+      slug: 'ftax',
+      summary: 'A tool for calculating profit and losses of on-chain transactions, providing accurate financial insights of blockchain transactions.',
+      features: [
+        'Calculate PnL from blockchain transactions',
+        'Etherscan API integration',
+        'Support for multiple chains'
+      ],
+      stack: ['Java', 'Spring', 'Angular', 'Etherscan API', 'MySQL'],
+      githubUrl: 'https://github.com/TanguyLeLoch/ftax',
+      status: 'published'
+    },
     {
       id: 'grid-trading-bot',
       title: 'Grid Trading Bot',
       slug: 'grid-trading-bot',
-      summary: 'The principle of this bot is to take profit of the volatility of the price.',
+      summary: 'The bot uses grid trading to profit from price variations. Running on a VPS with real money, security is a top priority.',
       features: [
-        'Buy when the price goes down',
-        'Sell when the price goes up'
+        'Grid trading strategy implementation',
+        'Real-time price monitoring',
+        'Discord notifications'
       ],
-      stack: ['TypeScript', 'NestJS', 'MongoDB', 'VPS deployment', 'microservice architecture'],
+      stack: ['NestJS', 'MongoDB', 'NodeJS', 'Binance API', 'Mexc API', 'DiscordJS'],
       githubUrl: 'https://github.com/TanguyLeLoch/volatility-trading-bot',
-      status: 'coming-soon'
+      status: 'published'
+    },
+    {
+      id: 'front-run-bot',
+      title: 'Front Run Trading Bot',
+      slug: 'front-run-bot',
+      summary: 'A bot that profits by front-running large transactions using the sandwich strategy. Deep dive into mempool dynamics and gas fee mechanics.',
+      features: [
+        'Mempool monitoring',
+        'Sandwich attack strategy',
+        'Gas optimization'
+      ],
+      stack: ['Web3.js', 'NodeJS', 'MongoDB', 'Solidity'],
+      status: 'published'
     },
     {
       id: 'rm-calculator',
@@ -149,7 +212,7 @@ export class ProfileDataService {
     return 5;
   }
 
-  getSkillsByCategory(category: 'backend' | 'frontend' | 'tools'): Skill[] {
+  getSkillsByCategory(category: 'backend' | 'frontend' | 'other'): Skill[] {
     return this.skills.filter(skill => skill.category === category);
   }
 }

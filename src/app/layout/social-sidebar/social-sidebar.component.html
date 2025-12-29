@@ -1,13 +1,27 @@
-<aside class="fixed left-4 bottom-0 hidden lg:flex flex-col items-center gap-4 z-40">
-  @for (link of profileData.socialLinks; track link.platform) {
-    <a 
-      [href]="link.url" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      class="text-muted-color hover:text-primary transition-colors text-xl hover:scale-110 transform"
-      [attr.aria-label]="link.platform">
-      <i [class]="link.icon"></i>
+<aside class="fixed left-6 bottom-0 hidden lg:flex flex-col items-center z-40">
+  <!-- Glass container for social links -->
+  <div class="glass-card p-3 rounded-2xl mb-4 flex flex-col gap-3">
+    @for (link of profileData.socialLinks; track link.platform) {
+      @if (link.platform === 'github' || link.platform === 'linkedin') {
+        <a
+          [href]="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="tooltip w-10 h-10 rounded-xl glass-subtle hover:glass flex items-center justify-center text-muted-color hover:text-accent transition-all hover:glow-accent-sm hover:border-accent"
+          [attr.aria-label]="link.platform"
+          [attr.data-tooltip]="link.platform === 'github' ? 'GitHub' : 'LinkedIn'">
+          <i [class]="link.icon" class="text-lg"></i>
+        </a>
+      }
+    }
+    <a
+      [href]="'mailto:' + profileData.profile.email"
+      class="tooltip w-10 h-10 rounded-xl glass-subtle hover:glass flex items-center justify-center text-muted-color hover:text-accent transition-all hover:glow-accent-sm hover:border-accent"
+      aria-label="Email"
+      data-tooltip="Send Email">
+      <i class="pi pi-envelope text-lg"></i>
     </a>
-  }
-  <div class="w-px h-24 bg-surface-300 dark:bg-surface-600"></div>
+  </div>
+  <!-- Gradient line -->
+  <div class="w-px h-20 bg-gradient-to-b from-accent to-transparent opacity-50"></div>
 </aside>

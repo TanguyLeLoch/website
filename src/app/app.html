@@ -1,8 +1,11 @@
-<div class="min-h-screen bg-surface-0 dark:bg-surface-900 gradient-bg">
+<div class="min-h-screen gradient-bg relative">
+  <!-- Animated gradient orbs for visual depth -->
+  <div class="gradient-orbs"></div>
+
   <app-header />
   <app-social-sidebar />
-  
-  <main class="max-w-5xl mx-auto px-4 py-8 lg:pl-16">
+
+  <main class="max-w-6xl mx-auto px-4 py-12 lg:pl-20 relative z-10">
     <router-outlet />
   </main>
   

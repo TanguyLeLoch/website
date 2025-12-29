@@ -1,13 +1,14 @@
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-  <!-- Left Column: Profile -->
-  <div class="lg:col-span-1">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <!-- Left Column: Profile (sticky) -->
+  <div class="lg:col-span-4 xl:col-span-3">
     <app-profile-card />
   </div>
 
-  <!-- Right Column: About, Resume, Projects -->
-  <div class="lg:col-span-2 space-y-6">
+  <!-- Right Column: Main content -->
+  <div class="lg:col-span-8 xl:col-span-9 space-y-8">
     <app-about-card />
     <app-resume-card />
     <app-side-projects-card />
+    <app-cta-card />
   </div>
 </div>

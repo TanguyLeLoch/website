@@ -1,8 +1,5 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { Card } from 'primeng/card';
-import { Tag } from 'primeng/tag';
-import { Divider } from 'primeng/divider';
-import { Timeline } from 'primeng/timeline';
+import { RouterLink } from '@angular/router';
 import { ProfileDataService } from '../../../../core/services/profile-data.service';
 import { FadeInDirective } from '../../../../shared/directives/fade-in.directive';
 import { StaggerChildrenDirective } from '../../../../shared/directives/stagger-children.directive';
@@ -11,7 +8,7 @@ import { HoverScaleDirective } from '../../../../shared/directives/hover-scale.d
 @Component({
   selector: 'app-resume-card',
   standalone: true,
-  imports: [Card, Tag, Divider, Timeline, FadeInDirective, StaggerChildrenDirective, HoverScaleDirective],
+  imports: [RouterLink, FadeInDirective, StaggerChildrenDirective, HoverScaleDirective],
   templateUrl: './resume-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -33,7 +30,7 @@ export class ResumeCardComponent {
     return this.profileData.getSkillsByCategory('frontend');
   }
 
-  get toolsSkills() {
-    return this.profileData.getSkillsByCategory('tools');
+  get otherSkills() {
+    return this.profileData.getSkillsByCategory('other');
   }
 }

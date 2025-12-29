@@ -1,39 +1,49 @@
-<div appFadeIn [fadeDelay]="0.1">
-  <p-card styleClass="h-full">
-    <ng-template #header>
-      <div class="p-4 pb-0">
-        <h2 class="text-xl font-bold text-color font-mono">About Me</h2>
-      </div>
-    </ng-template>
-    
-    <div class="space-y-4">
-      <!-- Headlines -->
-      <div class="flex flex-wrap gap-2" appStaggerChildren>
-        @for (headline of headlines; track headline) {
-          <p-tag [value]="headline" severity="secondary" [rounded]="true" />
+<div appFadeIn [fadeDelay]="0.1" class="glass-card p-6">
+  <!-- Header -->
+  <div class="flex items-center gap-3 mb-6">
+    <div class="w-10 h-10 rounded-xl glass-subtle flex items-center justify-center">
+      <i class="pi pi-user text-primary text-lg"></i>
+    </div>
+    <h2 class="text-xl font-bold text-gradient font-mono">About Me</h2>
+  </div>
+
+  <div class="space-y-6">
+    <!-- Headlines as glass pills -->
+    <div class="flex flex-wrap gap-2" appStaggerChildren>
+      @for (headline of headlines; track headline) {
+        <span class="glass-pill px-4 py-2 rounded-full text-sm font-medium text-color">
+          {{ headline }}
+        </span>
+      }
+    </div>
+
+    <!-- Intro Text -->
+    <p class="text-muted-color leading-relaxed text-base">
+      {{ profileData.profile.introText }}
+    </p>
+
+    <!-- Divider -->
+    <div class="h-px bg-gradient-to-r from-transparent via-[var(--glass-border)] to-transparent"></div>
+
+    <!-- Services -->
+    <div>
+      <h3 class="text-lg font-semibold text-color mb-4 flex items-center gap-2">
+        <i class="pi pi-cog text-primary"></i>
+        Services
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" appStaggerChildren>
+        @for (service of profileData.services; track service.title) {
+          <div
+            appHoverScale
+            class="glass-subtle hover:glass p-5 rounded-2xl text-center transition-all cursor-default group">
+            <div class="w-14 h-14 mx-auto mb-4 rounded-2xl glass flex items-center justify-center group-hover:glow-primary-sm transition-all">
+              <i [class]="service.icon + ' text-2xl text-primary'"></i>
+            </div>
+            <h4 class="font-semibold text-color mb-2">{{ service.title }}</h4>
+            <p class="text-muted-color text-sm leading-relaxed">{{ service.description }}</p>
+          </div>
         }
       </div>
-
-      <!-- Intro Text -->
-      <p class="text-muted-color leading-relaxed">
-        {{ profileData.profile.introText }}
-      </p>
-
-      <p-divider />
-
-      <!-- Services -->
-      <div>
-        <h3 class="text-lg font-semibold text-color mb-4">Services</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" appStaggerChildren>
-          @for (service of profileData.services; track service.title) {
-            <div class="text-center p-4 rounded-xl bg-surface-50 dark:bg-surface-800 hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors">
-              <i [class]="service.icon + ' text-3xl text-primary mb-3'"></i>
-              <h4 class="font-semibold text-color mb-2">{{ service.title }}</h4>
-              <p class="text-muted-color text-sm">{{ service.description }}</p>
-            </div>
-          }
-        </div>
-      </div>
     </div>
-  </p-card>
+  </div>
 </div>

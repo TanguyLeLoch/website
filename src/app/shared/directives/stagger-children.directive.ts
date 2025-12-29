@@ -11,11 +11,13 @@ export class StaggerChildrenDirective implements AfterViewInit, OnDestroy {
   private readonly el = inject(ElementRef);
   private readonly platformId = inject(PLATFORM_ID);
   private scrollTrigger: ScrollTrigger | null = null;
+  private animation: gsap.core.Tween | null = null;
 
   @Input() appStaggerChildren = '> *';
-  @Input() staggerDelay = 0.1;
-  @Input() staggerDuration = 0.5;
-  @Input() staggerDistance = 20;
+  @Input() staggerDelay = 0.08;
+  @Input() staggerDuration = 0.6;
+  @Input() staggerDistance = 25;
+  @Input() staggerBlur = true; // Add blur for glass effect
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -27,15 +29,37 @@ export class StaggerChildrenDirective implements AfterViewInit, OnDestroy {
 
     if (children.length === 0) return;
 
-    gsap.from(children, {
+    // Set initial state
+    const initialState: gsap.TweenVars = {
       opacity: 0,
-      y: this.staggerDistance,
+      y: this.staggerDistance
+    };
+
+    if (this.staggerBlur) {
+      initialState.filter = 'blur(6px)';
+    }
+
+    gsap.set(children, initialState);
+
+    // Animate to final state
+    const toVars: gsap.TweenVars = {
+      opacity: 1,
+      y: 0,
       duration: this.staggerDuration,
       stagger: this.staggerDelay,
-      ease: 'power2.out',
+      ease: 'power3.out',
+      clearProps: 'filter'
+    };
+
+    if (this.staggerBlur) {
+      toVars.filter = 'blur(0px)';
+    }
+
+    this.animation = gsap.to(children, {
+      ...toVars,
       scrollTrigger: {
         trigger: element,
-        start: 'top 85%',
+        start: 'top 88%',
         toggleActions: 'play none none none'
       }
     });
@@ -43,5 +67,6 @@ export class StaggerChildrenDirective implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.scrollTrigger?.kill();
+    this.animation?.kill();
   }
 }

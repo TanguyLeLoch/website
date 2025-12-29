@@ -1,0 +1,49 @@
+<div appFadeIn [fadeDelay]="0.4" class="glass-card p-8 text-center">
+  <div class="max-w-2xl mx-auto">
+    <!-- Available badge -->
+    <div class="inline-flex items-center gap-2 glass-pill px-4 py-2 rounded-full mb-6">
+      <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+      <span class="text-sm font-medium text-color">Currently Available</span>
+    </div>
+    
+    <h2 class="text-3xl font-bold text-gradient font-mono mb-4">Let's Work Together</h2>
+    <p class="text-muted-color mb-8 text-lg">
+      I'm looking for new opportunities to contribute my skills. 
+      Whether you have a project in mind or just want to connect, I'd love to hear from you.
+    </p>
+    
+    <div class="flex flex-wrap justify-center gap-4">
+      <a 
+        [href]="'mailto:' + profileData.profile.email"
+        class="btn-cta">
+        <i class="pi pi-envelope"></i>
+        Get in Touch
+      </a>
+      <a 
+        [href]="profileData.profile.resumePdf"
+        target="_blank"
+        class="btn-cta-outline">
+        <i class="pi pi-download"></i>
+        Download Resume
+      </a>
+    </div>
+    
+    <!-- Contact info -->
+    <div class="mt-8 pt-6 border-t border-[var(--glass-border-subtle)]">
+      <div class="flex flex-wrap justify-center gap-6 text-sm text-muted-color">
+        <a 
+          [href]="'mailto:' + profileData.profile.email"
+          class="flex items-center gap-2 hover:text-accent transition-colors">
+          <i class="pi pi-envelope text-accent"></i>
+          {{ profileData.profile.email }}
+        </a>
+        <a 
+          [href]="'tel:' + profileData.profile.phone"
+          class="flex items-center gap-2 hover:text-accent transition-colors">
+          <i class="pi pi-phone text-accent"></i>
+          {{ profileData.profile.phone }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
