@@ -1,0 +1,240 @@
+<div class="space-y-12">
+  <!-- Header -->
+  <div appFadeIn class="text-center">
+    <h1 class="text-4xl font-bold text-gradient font-mono mb-4">Experience</h1>
+    <p class="text-muted-color max-w-2xl mx-auto text-lg">
+      {{ profileData.getYearsOfExperience() }} years of professional experience building enterprise applications
+    </p>
+    
+    <!-- Quick stats -->
+    <div class="flex flex-wrap justify-center gap-4 mt-6" appStaggerChildren>
+      <div class="glass-pill px-5 py-3 rounded-2xl">
+        <span class="text-2xl font-bold text-accent">5+</span>
+        <span class="text-muted-color ml-2">Years Experience</span>
+      </div>
+      <div class="glass-pill px-5 py-3 rounded-2xl">
+        <span class="text-2xl font-bold text-accent">4</span>
+        <span class="text-muted-color ml-2">Companies</span>
+      </div>
+      <div class="glass-pill px-5 py-3 rounded-2xl">
+        <span class="text-2xl font-bold text-accent">3</span>
+        <span class="text-muted-color ml-2">Countries</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Experience Timeline -->
+  <div class="relative">
+    <!-- Timeline line -->
+    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-primary to-violet-500 hidden md:block"></div>
+    
+    <div class="space-y-8" appStaggerChildren>
+      @for (exp of profileData.experiences; track exp.company; let i = $index) {
+        <div 
+          appFadeIn 
+          [fadeDelay]="i * 0.1"
+          class="relative md:pl-20">
+          
+          <!-- Timeline marker (desktop) -->
+          <div class="hidden md:flex absolute left-0 top-6 w-16 h-16 glass-card-interactive items-center justify-center rounded-2xl experience-icon transition-all">
+            <i [class]="getCompanyIcon(exp.company) + ' text-2xl text-accent'"></i>
+          </div>
+          
+          <!-- Card -->
+          <div class="glass-card experience-card p-6 md:p-8">
+            <!-- Header -->
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
+              <div class="flex-1">
+                <!-- Mobile icon -->
+                <div class="flex md:hidden items-center gap-3 mb-3">
+                  <div class="w-12 h-12 glass-subtle rounded-xl flex items-center justify-center">
+                    <i [class]="getCompanyIcon(exp.company) + ' text-xl text-accent'"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-color">{{ exp.role }}</h3>
+                    <p class="text-accent font-medium">{{ exp.company }}</p>
+                  </div>
+                </div>
+                
+                <!-- Desktop title -->
+                <h3 class="hidden md:block text-2xl font-bold text-color mb-1">{{ exp.role }}</h3>
+                <div class="hidden md:flex items-center gap-3 flex-wrap">
+                  <span class="text-accent font-semibold text-lg">{{ exp.company }}</span>
+                  <span class="glass-pill px-3 py-1 rounded-full text-sm text-muted-color">
+                    <i class="pi pi-map-marker mr-1.5"></i>{{ exp.location }}
+                  </span>
+                </div>
+              </div>
+              
+              <!-- Duration badge -->
+              <div class="flex flex-col items-start lg:items-end gap-1">
+                <span class="glass-pill px-4 py-2 rounded-xl text-sm font-medium text-color">
+                  {{ exp.dateRange }}
+                </span>
+                <span class="text-xs text-accent font-medium">{{ exp.duration }}</span>
+              </div>
+            </div>
+            
+            <!-- Description -->
+            <p class="text-muted-color leading-relaxed mb-6">
+              {{ exp.description }}
+            </p>
+            
+            <!-- Tech Stack -->
+            @if (exp.stack && exp.stack.length > 0) {
+              <div>
+                <h4 class="text-sm font-medium text-muted-color mb-3 uppercase tracking-wide">Tech Stack</h4>
+                <div class="flex flex-wrap gap-2">
+                  @for (tech of exp.stack; track tech) {
+                    <span 
+                      appHoverScale
+                      [appHoverScale]="1.05"
+                      class="glass-pill px-4 py-2 rounded-xl text-sm font-medium text-color hover:text-accent cursor-default">
+                      {{ tech }}
+                    </span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Education Section -->
+  <div appFadeIn [fadeDelay]="0.4">
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-12 h-12 glass-subtle rounded-xl flex items-center justify-center">
+        <i class="pi pi-graduation-cap text-xl text-accent"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-gradient font-mono">Education</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" appStaggerChildren>
+      @for (edu of profileData.education; track edu.degree) {
+        <div 
+          appHoverScale
+          class="glass-card experience-card p-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 glass-subtle rounded-xl flex items-center justify-center shrink-0 experience-icon">
+              <i class="pi pi-graduation-cap text-xl text-accent"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-semibold text-color text-lg mb-1">{{ edu.degree }}</h3>
+              <p class="text-accent font-medium mb-2">{{ edu.institution }}</p>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sm text-muted-color">{{ edu.dateRange }}</span>
+                <span class="text-xs text-muted-color">({{ edu.duration }})</span>
+              </div>
+              <p class="text-muted-color text-sm leading-relaxed">{{ edu.description }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Skills Overview -->
+  <div appFadeIn [fadeDelay]="0.5" class="glass-card p-8">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-12 h-12 glass-subtle rounded-xl flex items-center justify-center">
+        <i class="pi pi-code text-xl text-accent"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-gradient font-mono">Technical Skills</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Backend -->
+      <div>
+        <h3 class="text-sm font-medium text-muted-color mb-4 uppercase tracking-wide flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+          Backend
+        </h3>
+        <div class="flex flex-wrap gap-2" appStaggerChildren>
+          @for (skill of profileData.getSkillsByCategory('backend'); track skill.name) {
+            <span 
+              appHoverScale
+              [appHoverScale]="1.05"
+              class="glass-pill flex items-center gap-2 px-3 py-2 rounded-xl cursor-default">
+              @if (skill.logoUrl) {
+                <img [src]="skill.logoUrl" [alt]="skill.name" class="w-5 h-5" />
+              }
+              <span class="text-sm font-medium text-color">{{ skill.name }}</span>
+            </span>
+          }
+        </div>
+      </div>
+      
+      <!-- Frontend -->
+      <div>
+        <h3 class="text-sm font-medium text-muted-color mb-4 uppercase tracking-wide flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+          Frontend
+        </h3>
+        <div class="flex flex-wrap gap-2" appStaggerChildren>
+          @for (skill of profileData.getSkillsByCategory('frontend'); track skill.name) {
+            <span 
+              appHoverScale
+              [appHoverScale]="1.05"
+              class="glass-pill flex items-center gap-2 px-3 py-2 rounded-xl cursor-default">
+              @if (skill.logoUrl) {
+                <img [src]="skill.logoUrl" [alt]="skill.name" class="w-5 h-5" />
+              }
+              <span class="text-sm font-medium text-color">{{ skill.name }}</span>
+            </span>
+          }
+        </div>
+      </div>
+      
+      <!-- Other -->
+      <div>
+        <h3 class="text-sm font-medium text-muted-color mb-4 uppercase tracking-wide flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-violet-500"></span>
+          Methodologies
+        </h3>
+        <div class="flex flex-wrap gap-2" appStaggerChildren>
+          @for (skill of profileData.getSkillsByCategory('other'); track skill.name) {
+            <span 
+              appHoverScale
+              [appHoverScale]="1.05"
+              class="glass-pill flex items-center gap-2 px-3 py-2 rounded-xl cursor-default">
+              @if (skill.logoUrl) {
+                <img [src]="skill.logoUrl" [alt]="skill.name" class="w-5 h-5" />
+              }
+              <span class="text-sm font-medium text-color">{{ skill.name }}</span>
+            </span>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div appFadeIn [fadeDelay]="0.6" class="glass-card p-8 text-center">
+    <div class="max-w-2xl mx-auto">
+      <div class="w-16 h-16 mx-auto mb-6 glass-subtle rounded-2xl flex items-center justify-center">
+        <i class="pi pi-send text-3xl text-accent"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-gradient font-mono mb-4">Let's Work Together</h2>
+      <p class="text-muted-color mb-8">
+        I'm currently available for new opportunities. Whether you have a project in mind or just want to connect, I'd love to hear from you.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a 
+          [href]="'mailto:' + profileData.profile.email"
+          class="btn-cta">
+          <i class="pi pi-envelope"></i>
+          Get in Touch
+        </a>
+        <a 
+          [href]="profileData.profile.resumePdf"
+          target="_blank"
+          class="btn-cta-outline">
+          <i class="pi pi-download"></i>
+          Download Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

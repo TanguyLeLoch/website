@@ -3,12 +3,12 @@ import { ProfileDataService } from '../../../../core/services/profile-data.servi
 import { FadeInDirective } from '../../../../shared/directives/fade-in.directive';
 
 @Component({
-  selector: 'app-profile-card',
+  selector: 'app-cta-card',
   standalone: true,
   imports: [FadeInDirective],
-  templateUrl: './profile-card.component.html',
+  templateUrl: './cta-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProfileCardComponent {
+export class CtaCardComponent {
   readonly profileData = inject(ProfileDataService);
 }

@@ -1,13 +1,12 @@
 import { Component, inject, ChangeDetectionStrategy, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Button } from 'primeng/button';
 import { ThemeService } from '../../core/services/theme.service';
 import { ProfileDataService } from '../../core/services/profile-data.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, Button],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -18,6 +17,7 @@ export class HeaderComponent {
 
   readonly menuItems = [
     { label: 'Home', routerLink: '/' },
+    { label: 'Experience', routerLink: '/experience' },
     { label: 'Projects', routerLink: '/projects' }
   ];
 

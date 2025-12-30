@@ -7,12 +7,16 @@ export interface Profile {
   profilePicture: string;
   introText: string;
   resumePdf: string;
+  email: string;
+  phone: string;
+  website: string;
 }
 
 export interface SocialLink {
-  platform: 'linkedin' | 'github';
+  platform: 'linkedin' | 'github' | 'website' | 'email' | 'phone';
   url: string;
   icon: string;
+  label?: string;
 }
 
 export interface Service {
@@ -23,13 +27,18 @@ export interface Service {
 
 export interface Experience {
   dateRange: string;
+  duration: string;
+  role: string;
   company: string;
   location: string;
   description: string;
+  highlights?: string[];
+  stack: string[];
 }
 
 export interface Education {
   dateRange: string;
+  duration: string;
   degree: string;
   institution: string;
   description: string;
@@ -37,8 +46,13 @@ export interface Education {
 
 export interface Skill {
   name: string;
-  logoUrl: string;
-  category: 'backend' | 'frontend' | 'tools';
+  logoUrl?: string;
+  category: 'backend' | 'frontend' | 'other';
+}
+
+export interface Language {
+  name: string;
+  level: string;
 }
 
 export interface Project {
