@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Design tokens — the single source of truth for the visual language.
+   Swiss/grid direction: paper ground, ink structure, one signal accent.
+   ========================================================================== */
+@theme {
+  --color-*: initial;
+  --color-paper: oklch(96.5% 0.006 90);
+  --color-paper-bright: oklch(100% 0.002 90);
+  --color-ink: oklch(16% 0.005 90);
+  --color-ink-soft: oklch(42% 0.008 90);
+  --color-ink-faint: oklch(64% 0.008 90);
+  --color-rule: oklch(86% 0.008 90);
+  --color-signal: oklch(60% 0.21 38);
+  --color-signal-dark: oklch(50% 0.18 38);
+
+  --font-*: initial;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --text-label: 0.72rem;
+  --text-label--letter-spacing: 0.16em;
+  --text-label--font-weight: 700;
+
+  --ease-out-quart: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   Base — element defaults, no classes needed in templates for these.
+   ========================================================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: --spacing(24);
+
+    @media (prefers-reduced-motion: reduce) {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    min-width: 20rem;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-signal);
+    outline-offset: 4px;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ==========================================================================
+   Components — the few repeated patterns of the system.
+   Everything else is composed from utilities in the templates.
+   ========================================================================== */
+@layer components {
+  /* Page column: single max-width and gutter for every band of content */
+  .wrap {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Small orange overline that labels a block */
+  .eyebrow {
+    @apply text-label uppercase text-signal-dark;
+  }
+
+  /* Display headings */
+  .display-1 {
+    @apply text-[clamp(2.75rem,7vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.03em] text-balance;
+  }
+
+  .display-2 {
+    @apply text-[clamp(1.9rem,4vw,3.25rem)] font-bold leading-[1.05] tracking-[-0.025em] text-balance;
+  }
+
+  /* Section heading block: index / title / intro on one row at md+ */
+  .section-heading {
+    @apply mb-10 grid items-start gap-x-8 gap-y-5 md:mb-16 md:grid-cols-[7rem_1.2fr_minmax(16rem,0.8fr)];
+  }
+
+  .section-intro {
+    @apply max-w-xl text-base text-ink-soft;
+  }
+
+  /* Buttons */
+  .btn-primary,
+  .btn-secondary {
+    @apply inline-flex min-h-13 items-center justify-center gap-4 px-6 py-3 text-sm font-bold tracking-[0.02em] no-underline transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-ink text-paper hover:bg-signal;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-ink hover:border-signal-dark hover:text-signal-dark;
+  }
+
+  /* Header navigation link */
+  .nav-item {
+    @apply py-3 text-[0.84rem] font-semibold text-ink-soft no-underline transition-colors hover:text-signal-dark;
+  }
+
+  /* Footer link on ink ground */
+  .footer-link {
+    @apply min-h-11 content-center text-[0.84rem] font-semibold no-underline transition-colors hover:text-signal;
+  }
+
+  /* Underlined text link */
+  .text-link {
+    @apply inline-flex min-h-11 items-center gap-2.5 border-b-2 border-current text-[0.84rem] font-bold no-underline transition-colors hover:text-signal-dark;
+  }
+
+  /* Icons: micro-motion on the parent link's hover */
+  lucide-angular {
+    @apply inline-flex shrink-0;
+  }
+
+  .icon-nudge {
+    transition: transform 200ms var(--ease-out-quart);
+
+    a:hover &,
+    button:hover & {
+      transform: translate(3px, -3px);
+    }
+  }
+
+  .icon-drop {
+    transition: transform 200ms var(--ease-out-quart);
+
+    a:hover &,
+    button:hover & {
+      transform: translateY(3px);
+    }
+  }
+
+  /* One-shot entrance for routed pages */
+  .page-enter {
+    animation: page-enter 600ms var(--ease-out-quart) both;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

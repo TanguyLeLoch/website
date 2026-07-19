@@ -1,27 +1,25 @@
-<footer class="glass-heavy mt-16 relative z-10">
-  <div class="max-w-6xl mx-auto px-6 py-8">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <!-- Branding & Copyright -->
-      <div class="flex flex-col items-center md:items-start gap-2">
-        <span class="text-lg font-bold text-gradient font-mono">{{ profileData.profile.name }}</span>
-        <p class="text-muted-color text-sm">
-          &copy; {{ currentYear }} All rights reserved.
-        </p>
-      </div>
-
-      <!-- Social Links -->
-      <div class="flex items-center gap-3">
-        @for (link of profileData.socialLinks; track link.platform) {
-          <a
-            [href]="link.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl glass-subtle hover:glass flex items-center justify-center text-muted-color hover:text-primary transition-all hover:glow-primary-sm"
-            [attr.aria-label]="link.platform">
-            <i [class]="link.icon" class="text-lg"></i>
-          </a>
-        }
-      </div>
+<footer class="bg-ink text-paper">
+  <div class="wrap grid gap-8 py-9 md:grid-cols-[1fr_auto_auto] md:items-end">
+    <div class="grid gap-1.5">
+      <strong class="text-base font-bold tracking-[0.02em]">{{ profileData.profile.name }}</strong>
+      <span class="text-xs text-ink-faint">Freelance product engineer · Bangkok / remote</span>
     </div>
+
+    <nav class="flex flex-wrap gap-x-8 gap-y-4" aria-label="Social links">
+      <a class="footer-link" href="https://github.com/TanguyLeLoch" target="_blank" rel="noopener noreferrer">
+        <lucide-angular [img]="icons.github" [size]="15" [strokeWidth]="2" aria-hidden="true" />
+        GitHub
+      </a>
+      <a class="footer-link" href="https://www.linkedin.com/in/tanguyleloch/" target="_blank" rel="noopener noreferrer">
+        <lucide-angular [img]="icons.linkedin" [size]="15" [strokeWidth]="2" aria-hidden="true" />
+        LinkedIn
+      </a>
+      <a class="footer-link" [href]="'mailto:' + profileData.profile.email">
+        <lucide-angular [img]="icons.mail" [size]="15" [strokeWidth]="2" aria-hidden="true" />
+        Email
+      </a>
+    </nav>
+
+    <span class="text-xs text-ink-faint">© {{ currentYear }} Tanguy Le Loch</span>
   </div>
 </footer>

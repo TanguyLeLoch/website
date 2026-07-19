@@ -7,11 +7,11 @@ export const routes: Routes = [
   },
   {
     path: 'experience',
-    loadComponent: () => import('./features/experience/experience.component').then(m => m.ExperienceComponent)
+    redirectTo: ''
   },
   {
     path: 'projects',
-    loadComponent: () => import('./features/projects/projects.component').then(m => m.ProjectsComponent)
+    redirectTo: ''
   },
   {
     path: '**',

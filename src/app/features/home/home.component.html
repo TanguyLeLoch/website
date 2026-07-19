@@ -1,14 +1,228 @@
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-  <!-- Left Column: Profile (sticky) -->
-  <div class="lg:col-span-4 xl:col-span-3">
-    <app-profile-card />
-  </div>
+<div class="page-enter">
+  <section class="border-b-2 border-ink" aria-labelledby="hero-title">
+    <div class="wrap pt-16 pb-12 md:pt-28 md:pb-20">
+      <div class="grid gap-12 md:grid-cols-[1.4fr_minmax(18rem,0.8fr)] md:items-end">
+        <div>
+          <p class="eyebrow mb-6">Freelance Java + Angular engineer</p>
+          <h1 id="hero-title" class="display-1 max-w-[15ch]">
+            Complex software. <em class="not-italic text-signal">A clear path</em> to production.
+          </h1>
+        </div>
 
-  <!-- Right Column: Main content -->
-  <div class="lg:col-span-8 xl:col-span-9 space-y-8">
-    <app-about-card />
-    <app-resume-card />
-    <app-side-projects-card />
-    <app-cta-card />
-  </div>
+        <div class="grid max-w-xl content-end">
+          <p class="text-lg leading-relaxed text-ink-soft">
+            I help product teams build, untangle, and ship business-critical web platforms—owning the work from Java services to Angular interfaces.
+          </p>
+          <p class="mt-4 max-w-[44ch] text-sm text-ink-soft">
+            Best fit: a product already carrying real users, real constraints, or both.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-x-4 gap-y-3">
+            <a
+              class="btn-primary"
+              [href]="profileData.profile.calendlyUrl"
+              target="_blank"
+              rel="noopener noreferrer">
+              Book a 30-minute call
+              <lucide-angular [img]="icons.arrowUpRight" [size]="16" [strokeWidth]="2.5" class="icon-nudge" aria-hidden="true" />
+            </a>
+            <a class="btn-secondary" href="#proof">
+              See the evidence
+              <lucide-angular [img]="icons.arrowDown" [size]="16" [strokeWidth]="2.5" class="icon-drop" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="mt-12 grid border-t border-rule max-md:divide-y max-md:divide-rule md:mt-22 md:grid-cols-3 md:divide-x md:divide-rule"
+        aria-label="Freelance profile highlights">
+        @for (item of highlights; track item.label) {
+          <div class="grid min-h-18 content-center gap-1.5 py-4 md:min-h-22 md:not-first:px-6">
+            <span class="text-label uppercase text-ink-soft">{{ item.label }}</span>
+            <span class="text-[1.05rem] font-bold tracking-[-0.01em]">{{ item.value }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="proof" class="scroll-mt-20 border-b-2 border-ink" aria-labelledby="proof-title">
+    <div class="wrap py-14 md:py-26">
+      <div class="section-heading">
+        <span class="eyebrow">01 / Proof</span>
+        <h2 id="proof-title" class="display-2 max-w-[20ch]">The work has to move a number that matters.</h2>
+        <p class="section-intro">
+          I have spent my career inside large, imperfect, high-stakes products. The goal is not prettier code. It is a team that can deliver with more confidence.
+        </p>
+      </div>
+
+      <div
+        class="grid border-y-2 border-ink max-md:divide-y max-md:divide-rule md:grid-cols-3 md:divide-x md:divide-rule">
+        @for (item of proof; track item.metric) {
+          <article class="grid content-start gap-3 py-8 md:px-7 md:py-10 md:first:pl-0 md:last:pr-0">
+            <strong
+              class="text-[clamp(2.5rem,4.5vw,3.75rem)] font-bold leading-none tracking-[-0.03em] text-signal tabular-nums">
+              {{ item.metric }}
+            </strong>
+            <div>
+              <h3 class="text-[1.05rem] font-bold">{{ item.title }}</h3>
+              <p class="mt-1.5 max-w-[34ch] text-sm text-ink-soft">{{ item.detail }}</p>
+            </div>
+            <span class="text-label uppercase text-ink-soft">{{ item.context }}</span>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="scroll-mt-20 border-b-2 border-ink" aria-labelledby="services-title">
+    <div class="wrap py-14 md:py-26">
+      <div class="section-heading">
+        <span class="eyebrow">02 / Services</span>
+        <h2 id="services-title" class="display-2 max-w-[20ch]">Where I create leverage.</h2>
+        <p class="section-intro">
+          Bring me in where ownership is unclear, delivery is slowing down, or a valuable feature needs to cross technical boundaries.
+        </p>
+      </div>
+
+      <div class="border-t-2 border-ink">
+        @for (service of services; track service.number) {
+          <article
+            class="grid gap-x-8 gap-y-3 border-b border-rule py-6 last:border-b-2 last:border-b-ink md:grid-cols-[3.5rem_minmax(12rem,0.55fr)_1fr] md:py-8">
+            <span class="eyebrow">{{ service.number }}</span>
+            <h3 class="text-xl font-bold tracking-[-0.015em]">{{ service.title }}</h3>
+            <p class="max-w-[62ch] text-[0.95rem] leading-relaxed text-ink-soft">{{ service.description }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="scroll-mt-20 border-b-2 border-ink" aria-labelledby="work-title">
+    <div class="wrap py-14 md:py-26">
+      <div class="section-heading">
+        <span class="eyebrow">03 / Builds</span>
+        <h2 id="work-title" class="display-2 max-w-[20ch]">Products I have taken from idea to working software.</h2>
+        <p class="section-intro">
+          Small independent builds are where I test product judgment, infrastructure choices, and end-to-end ownership without a handoff.
+        </p>
+      </div>
+
+      <div class="grid gap-px border-2 border-ink bg-ink md:grid-cols-3">
+        @for (project of featuredProjects; track project.id) {
+          <article class="grid content-start gap-4 bg-paper p-6 transition-colors hover:bg-paper-bright md:p-8">
+            <div>
+              <p class="eyebrow mb-2.5">{{ projectKinds[project.id] }}</p>
+              <h3 class="text-[1.25rem] font-bold leading-tight tracking-[-0.015em]">{{ project.title }}</h3>
+            </div>
+            <p class="max-w-[44ch] text-sm leading-relaxed text-ink-soft">{{ project.summary }}</p>
+            @if (project.stack) {
+              <ul class="flex flex-wrap gap-1.5 text-[0.7rem] uppercase tracking-[0.04em] text-ink-soft" aria-label="Technologies used">
+                @for (technology of project.stack.slice(0, 4); track technology) {
+                  <li class="border border-rule px-2 py-0.5">{{ technology }}</li>
+                }
+              </ul>
+            }
+            <div class="mt-auto flex flex-wrap items-center gap-5">
+              @if (project.liveUrl) {
+                <a class="text-link" [href]="project.liveUrl" target="_blank" rel="noopener noreferrer">
+                  View live
+                  <lucide-angular [img]="icons.arrowUpRight" [size]="14" [strokeWidth]="2.5" class="icon-nudge" aria-hidden="true" />
+                </a>
+              }
+              @if (project.githubUrl) {
+                <a class="text-link" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+                  Source
+                  <lucide-angular [img]="icons.github" [size]="14" [strokeWidth]="2" aria-hidden="true" />
+                </a>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b-2 border-ink" aria-labelledby="process-title">
+    <div class="wrap py-14 md:py-26">
+      <div class="section-heading">
+        <span class="eyebrow">04 / Approach</span>
+        <h2 id="process-title" class="display-2 max-w-[20ch]">Simple engagement. Visible progress.</h2>
+        <p class="section-intro">
+          No theatre and no black box. We agree on the outcome, surface the risks early, and keep working software in view.
+        </p>
+      </div>
+
+      <div class="grid border-t-2 border-ink max-md:divide-y max-md:divide-rule md:grid-cols-3 md:divide-x md:divide-rule">
+        @for (step of process; track step.index) {
+          <article class="py-7 md:p-7 md:first:pl-0 md:last:pr-0">
+            <span class="eyebrow">{{ step.index }}</span>
+            <h3 class="mt-5 mb-3 text-xl font-bold tracking-[-0.015em]">{{ step.title }}</h3>
+            <p class="max-w-[36ch] text-[0.92rem] leading-relaxed text-ink-soft">{{ step.description }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="scroll-mt-20 border-b-2 border-ink" aria-labelledby="about-title">
+    <div class="wrap grid gap-10 py-14 md:grid-cols-[minmax(16rem,0.6fr)_minmax(22rem,1fr)] md:gap-20 md:py-26">
+      <div class="self-start border-2 border-ink">
+        <img
+          class="aspect-4/5 max-h-136 w-full object-cover object-[50%_35%] grayscale contrast-105"
+          [src]="profileData.profile.profilePicture"
+          [alt]="profileData.profile.name" />
+      </div>
+
+      <div class="grid content-center">
+        <p class="eyebrow mb-6">The person behind the work</p>
+        <h2 id="about-title" class="display-2 max-w-[20ch]">One engineer. Fewer handoffs.</h2>
+        <p class="mt-7 max-w-[44ch] text-lg font-medium leading-relaxed">
+          I am Tanguy, a French product engineer based in Bangkok. I work best with teams that value direct communication, pragmatic decisions, and real ownership.
+        </p>
+        <p class="mt-4 max-w-[54ch] text-[0.95rem] leading-relaxed text-ink-soft">
+          My background spans transport, e-signature, telecom, and data platforms. That experience taught me how to enter complex systems without treating complexity as inevitable.
+        </p>
+
+        <ul class="mt-10 grid border-t-2 border-ink">
+          @for (fact of facts; track fact.label) {
+            <li class="flex justify-between gap-8 border-b border-rule py-3.5 text-sm">
+              <span class="text-ink-soft">{{ fact.label }}</span>
+              <strong>{{ fact.value }}</strong>
+            </li>
+          }
+        </ul>
+
+        <div class="mt-7 flex flex-wrap gap-6">
+          <a class="text-link" [href]="profileData.profile.resumePdf" target="_blank">
+            Read the résumé
+            <lucide-angular [img]="icons.fileText" [size]="14" [strokeWidth]="2" aria-hidden="true" />
+          </a>
+          <a class="text-link" href="https://www.linkedin.com/in/tanguyleloch/" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+            <lucide-angular [img]="icons.linkedin" [size]="14" [strokeWidth]="2" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="scroll-mt-20 bg-ink text-paper" aria-labelledby="contact-title">
+    <div class="wrap grid gap-10 py-16 md:grid-cols-[1.2fr_minmax(20rem,0.7fr)] md:py-30">
+      <h2 id="contact-title" class="display-2 max-w-[14ch]">Have a product that needs to move?</h2>
+      <div class="grid max-w-xl content-end">
+        <p class="mb-8 text-[1.05rem] text-ink-faint">
+          Tell me what is stuck, what needs to ship, and what a useful outcome would look like. I will reply with a direct next step.
+        </p>
+        <a
+          class="inline-flex items-center justify-between gap-8 border-b-2 border-paper py-3.5 text-[clamp(1.1rem,2.2vw,1.6rem)] font-bold tracking-[-0.015em] no-underline transition-colors hover:border-signal hover:text-signal"
+          [href]="profileData.profile.calendlyUrl"
+          target="_blank"
+          rel="noopener noreferrer">
+          Book a 30-minute intro call
+          <lucide-angular [img]="icons.arrowUpRight" [size]="22" [strokeWidth]="2.5" class="icon-nudge" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </section>
 </div>
